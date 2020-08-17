@@ -1,159 +1,33 @@
 #!/usr/bin/env python3
 
-# ---------------------
-# SCRIPT INFO ---------
-# ---------------------
-# This script downloads X amount of images from a
-# selected subreddit. The subreddit can be specified
-# in the user config section of this srcipt or as
-# a parameter in the script.
-#
-# Run example: python getWalls.py earthporn
-
-# ---------------------
-# USER CONFIG ---------
-# ---------------------
-
-# Where to store downloaded images
-directory = '~/Pictures/Wallpapers/Reddit/'
-# Which subreddit to download from
-subreddit = 'earthporn'
-# Minimum width of image
-min_width = 3440
-# Minimum height of image
-min_height = 1440
-# How many posts to get for each request (Max 100)
-jsonLimit = 100
-# Increase this number if the number above (jsonLimit) isn't enough posts
-loops = 5
-
-# ---------------------
-# IMPORTS -------------
-# ---------------------
+# Imports.
 import os
 from os.path import expanduser
 import sys
 import requests
 import urllib
 from PIL import ImageFile
+from screeninfo import get_monitors
+from timeout import timeout
 
-# ---------------------
-# FUNCTIONS -----------
-# ---------------------
+# Configuration.
+subreddit = sys.argv[1]
+directory = sys.argv[2]
+target = int(sys.argv[3])
+limit = int(sys.argv[4])
+time_limit = int(sys.argv[5])
+user_agent = 'User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:79.0) Gecko/20100101 Firefox/79.0'
 
-# Returns false on status code error
-def validURL(URL):
-    statusCode = requests.get(URL, headers = {'User-agent':'getWallpapers'}).status_code
-    if statusCode == 404:
-        return False
-    else: return True
+# Determine the resolution we ought to target.
+min_width = 0
+min_height = 0
+for m in get_monitors():
+    if m.width > min_width:
+        min_width = m.width
+    if m.height > min_height:
+        min_height = m.height
 
-# Creates download directory if needed
-def prepareDirectory(directory):
-    if not os.path.exists(directory):
-        os.makedirs(directory)
-        print('Created directory {}'.format(directory))
-
-# Returns false if subreddit doesn't exist
-def verifySubreddit(subreddit):
-    URL = 'https://reddit.com/r/{}.json'.format(subreddit)
-    result= requests.get(URL, headers = {'User-agent':'getWallpapers'}).json()
-    try:
-        result['error']
-        return False
-    except:
-        return True
-
-# Returns list of posts from subreddit as json
-def getPosts(subreddit, loops, after):
-    allPosts = []
-
-    i = 0
-    while i < loops:
-        URL = 'https://reddit.com/r/{}/top/.json?t=all&limit={}&after={}'.format(subreddit, jsonLimit, after)
-        posts = requests.get(URL, headers = {'User-agent':'getWallpapers'}).json()
-        # allPosts.append(posts['data']['children'])
-        for post in posts['data']['children']:
-            allPosts.append(post)
-        after = posts['data']['after']
-        i += 1
-
-    return allPosts
-
-# Returns false if URL is not an image
-def isImg(URL):
-    if URL.endswith(('.png', '.jpeg', '.jpg')):
-        return True
-    else: return False
-
-# Returns false if image from URL is not HD (Specified by min-/max_width)
-def isHD(URL, min_widht, min_height):
-    file = urllib.request.urlopen(URL)
-    size = file.headers.get("content-length")
-    if size: size = int(size)
-    p = ImageFile.Parser()
-    while 1:
-        data = file.read(1024)
-        if not data:
-            break
-        p.feed(data)
-        if p.image:
-            # return p.image.size
-            if p.image.size[0] >= min_width and p.image.size[1] >= min_height:
-                return True
-                break
-            else:
-                return False
-                break
-    file.close()
-    return False
-
-# Returns false if image from URL is not landscape
-def isLandscape(URL):
-    file = urllib.request.urlopen(URL)
-    size = file.headers.get("content-length")
-    if size: size = int(size)
-    p = ImageFile.Parser()
-    while 1:
-        data = file.read(1024)
-        if not data:
-            break
-        p.feed(data)
-        if p.image:
-            # return p.image.size
-            if p.image.size[0] >= p.image.size[1]:
-                return True
-                break
-            else:
-                return False
-                break
-    file.close()
-    return False
-
-# Returns true if image from URL is already downloaded
-def alreadyDownloaded(URL):
-    imgName = os.path.basename(URL)
-    localFilePath = os.path.join(directory, imgName)
-    if(os.path.isfile(localFilePath)):
-        return True
-    else: return False
-
-# Returns false if image from post/URL is not from reddit or imgur domain
-def knownURL(post):
-    if post.lower().startswith('https://i.redd.it/') or post.lower().startswith('http://i.redd.it/') or post.lower().startswith('https://i.imgur.com/') or post.lower().startswith('http://i.imgur.com/'):
-        return True
-    else: return False
-
-# Returns true if image from post/URL is stored locally
-def storeImg(post):
-    if urllib.request.urlretrieve(post, os.path.join(directory, os.path.basename(post))):
-        return True
-    else: return False
-
-
-# ---------------------
-# COLORS --------------
-# ---------------------
+# Constants.
 DARK = '\033[1;30m'
 RED = '\033[1;31m'
 GREEN = '\033[1;32m'
@@ -161,105 +35,123 @@ ORANGE = '\033[1;33m'
 PURPLE = '\033[1;35m'
 NC = '\033[0m'
 
+# Creates the download directory if needed.
+def prepareDirectory(directory):
+    if not os.path.exists(directory):
+        os.makedirs(directory)
+        print('* created wallpaper directory: {}'.format(directory))
 
-# ---------------------
-# START SCRIPT --------
-# ---------------------
+# Checks whether or not our URL is an image.
+def isImg(URL):
+    if URL.endswith(('.png', '.jpeg', '.jpg')):
+        return True
+    else: return False
 
-# Check if subreddit name is specified as parameter
-try:
-    subreddit = sys.argv[1]
-except:
-    pass
+# Returns a list of posts from a subreddit.
+def getPosts(subreddit, loops, after):
+    allPosts = []
+    i = 0
+    while i < loops:
+        URL = 'https://reddit.com/r/{}/top/.json?t=all&limit={}&after={}'.format(subreddit, jsonLimit, after)
+        posts = requests.get(URL, headers = {'User-Agent':user_agent}).json()
+        for post in posts['data']['children']:
+            url = post['data']['url']
+            if isImg(url):
+                allPosts.append(url)
+        after = posts['data']['after']
+        i += 1
+    return allPosts
 
-# Creates directory
+# Returns false if image from URL does not have high enough resolution.
+# Returns false if our URL image is not in landscape orientation.
+# Returns false if there is an error accessing the URL.
+def isPotentialWallpaper(URL, min_width, min_height):
+    try:
+        file = urllib.request.urlopen(URL)
+        size = file.headers.get("content-length")
+        if size: size = int(size)
+        p = ImageFile.Parser()
+        while 1:
+            data = file.read(1024)
+            if not data:
+                break
+            p.feed(data)
+            if p.image:
+                if p.image.size[0] >= min_width and p.image.size[1] >= min_height:
+                    return p.image.size[0] >= p.image.size[1]
+                    break
+                else:
+                    return False
+                    break
+        file.close()
+        return False
+    except:
+        return False
+
+# Returns true if the image from our URL is already downloaded.
+def alreadyDownloaded(URL):
+    imgName = os.path.basename(URL)
+    localFilePath = os.path.join(directory, imgName)
+    if(os.path.isfile(localFilePath)):
+        return True
+    else: return False
+
+# Downloads our image and Returns true if stored locally.
+@timeout(time_limit)
+def storeImg(URL):
+    if urllib.request.urlretrieve(URL, os.path.join(directory, os.path.basename(URL))):
+        return True
+    else: return False
+
+# Create the download directory.
 directory = expanduser(directory)
 directory = os.path.join(directory, subreddit)
 prepareDirectory(directory)
 
-# Exits if invalid subreddit name
-if not verifySubreddit(subreddit):
-    print('r/{} is not a valid subreddit'.format(subreddit))
-    sys.exit()
-
-# For reddit pagination (Leave empty)
+# Retrieve posts.
+print(GREEN + '* retrieving post URLs ...' + NC)
 after = ''
-
-# Stores posts from function
+jsonLimit = 100
+loops = max(1, limit / 100)
 posts = getPosts(subreddit, loops, after)
-
-# For adding index numbers to loop
 index = 1
-
-# Counting amount of images downloaded
 downloadCount = 0
+print(GREEN + '* post URLs retrieved.' + NC)
 
-# Print starting message
-print()
+# Print a debug message.
 print(DARK + '--------------------------------------------' + NC)
-print(PURPLE + 'Downloading to      : ' + ORANGE + directory + NC)
-print(PURPLE + 'From r/             : ' + ORANGE + subreddit + NC)
-print(PURPLE + 'Minimum resolution  : ' + ORANGE + str(min_width) + 'x' + str(min_height) + NC)
-print(PURPLE + 'Maximum downloads   : ' + ORANGE + str(jsonLimit*loops) + NC)
+print(PURPLE + 'Downloading images to:  ' + ORANGE + directory + NC)
+print(PURPLE + 'From /r/:               ' + ORANGE + subreddit + NC)
+print(PURPLE + 'Minimum resolution:     ' + ORANGE + str(min_width) + 'x' + str(min_height) + NC)
+print(PURPLE + 'Maximum time (seconds): ' + ORANGE + str(len(posts) * time_limit) + NC)
 print(DARK + '--------------------------------------------' + NC)
-print()
 
-
-# Loops through all posts
+# Loop through all posts.
 for post in posts:
+    if downloadCount >= target:
+        print(GREEN + '* download target reached!' + NC)
+        break
 
-    # Shortening variable name
-    post = post['data']['url']
-
-    # Skip post on 404 error
-    if not validURL(post):
-        print(RED + '{}) 404 error'.format(index) + NC)
+    if not isPotentialWallpaper(post, min_width, min_height):
+        print(RED + '* {}) skipping unsuitable wallpaper image.'.format(index) + NC)
         index += 1
         continue
 
-    # Skip unknown URLs
-    elif not knownURL(post):
-        print(RED + '{}) Skipping unknown URL'.format(index) + NC)
-        index += 1
-        continue
-
-    # Skip post if not image
-    elif not isImg(post):
-        print(RED + '{}) No image in this post'.format(index) + NC + NC + NC + NC)
-        index += 1
-        continue
-
-    # Skip post if not landscape
-    elif not isLandscape(post):
-        print(RED + '{}) Skipping portrait image'.format(index) + NC)
-        index += 1
-        continue
-
-    # Skip post if not HD
-    elif not isHD(post, min_width, min_height):
-        print(RED + '{}) Skipping low resolution image'.format(index) + NC)
-        index += 1
-        continue
-
-    # Skip already downloaded images
     elif alreadyDownloaded(post):
-        print(RED + '{}) Skipping already downloaded image'.format(index) + NC)
+        print(RED + '* {}) skipping locally-present image.'.format(index) + NC)
         index += 1
         continue
 
-    # All checks cleared, download image
     else:
-        # Store image from post locally
-        if storeImg(post):
-            print(GREEN + '{}) Downloaded {}'.format(index, os.path.basename(post)) + NC)
-            downloadCount += 1
+        try:
+            if storeImg(post):
+                print(GREEN + '* {}) downloaded {}!'.format(index, os.path.basename(post)) + NC)
+                downloadCount += 1
+                index += 1
+            else:
+                print(RED + '* unexcepted error with image download.' + NC)
+                index += 1
+        except:
+            print(RED + '* {}) skipping an image which took too long to download.'.format(index) + NC)
             index += 1
-        # For unexpected errors
-        else:
-            print(RED + 'Unexcepted error' + NC)
-            index += 1
-
-
-# Print info when loop is finished
-print()
-print(ORANGE + '{}'.format(downloadCount) + PURPLE + ' images was downloaded to ' + ORANGE + '{}'.format(directory) + NC)
+print(ORANGE + '* {}'.format(downloadCount) + PURPLE + ' images were downloaded to ' + ORANGE + '{}.'.format(directory) + NC)
