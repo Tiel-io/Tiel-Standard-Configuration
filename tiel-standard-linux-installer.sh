@@ -51,7 +51,7 @@ sudo pacman -S archlinux-keyring --needed
 
 ## Update the system.
 sudo pacman -Syu --overwrite /usr/lib\*/p11-kit-trust.so --noconfirm
-yay --noconfirm
+yay -Syu --devel --timeupdate --noconfirm
 
 ## Install or update standard programs if needed.
 sudo pacman -S python-pip --needed
