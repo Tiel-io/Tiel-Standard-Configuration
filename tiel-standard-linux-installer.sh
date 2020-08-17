@@ -48,8 +48,8 @@ echo ""
 sudo pacman -S archlinux-keyring --needed
 
 ## Update the system.
-sudo pacman -Syu --overwrite /usr/lib\*/p11-kit-trust.so
-yay
+sudo pacman -Syu --overwrite /usr/lib\*/p11-kit-trust.so --noconfirm
+yay --noconfirm
 
 ## Install or update standard programs if needed.
 sudo pacman -S python-pip --needed
