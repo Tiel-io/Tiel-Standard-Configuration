@@ -9,4 +9,4 @@ mkdir ~/.tiel-standard/Tiel-Standard-Configuration
 cd ~/.tiel-standard/Tiel-Standard-Configuration
 wget -O tiel-standard-linux-installer.sh https://raw.githubusercontent.com/Tiel-io/Tiel-Standard-Configuration/master/tiel-standard-linux-installer.sh
 sudo chmod +x tiel-standard-linux-installer.sh
-./tiel-standard-linux-installer.sh
+./tiel-standard-linux-installer.sh true

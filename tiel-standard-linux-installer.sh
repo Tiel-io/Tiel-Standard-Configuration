@@ -14,10 +14,11 @@ echo ""
 ## Create and populate the Tiel standard data folder.
 echo "--- Preparing Tiel Standard installation files. ---"
 tiel_dir="${HOME}/.tiel-standard"
-first_time=true
+first_time=false
 if [ ! -d "${tiel_dir}" ]; then
   echo "* creating Tiel Standard directory: mkdir -p $tiel_dir"
   mkdir -p "${tiel_dir}"
+  first_time=true
 else
   echo "* found existing Tiel Standard directory: $tiel_dir"
   first_time=$1
