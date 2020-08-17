@@ -29,7 +29,8 @@ git clone https://github.com/Tiel-io/Tiel-Standard-Configuration.git
 cd Tiel-Standard-Configuration
 git fetch --all
 git reset --hard origin/master
-
+sudo cp -a ./usr/local/bin/. /usr/local/bin/
+find /usr/local/bin/ -type f -iname "*.sh" -exec sudo chmod +x {} \;
 echo "--- Tiel Standard installation files are prepared. ---"
 echo ""
 
@@ -84,7 +85,7 @@ if [ "$first_time" = true ]; then
   done
   echo "* caching font: fc-cache -f"
   fc-cache -f
-
+  fira-code-default
   echo "--- Custom font files set. ---"
   echo ""
 fi
