@@ -5,11 +5,11 @@ This repository contains configuration scripts for applying a custom, consistent
 Download and run the `tiel-standard-linux-installer.sh` script. This script itself can be downloaded and executed using the contents of the `tiel-standard-bootstrapper.sh` script or by entering the following sequence of commands into your terminal:
 ```
 mkdir ~/.tiel-standard
-mkdir ~/.tiel-standard/Tiel-Standard-Configuration
-cd ~/.tiel-standard/Tiel-Standard-Configuration
+cd ~/.tiel-standard
 wget -O tiel-standard-linux-installer.sh https://raw.githubusercontent.com/Tiel-io/Tiel-Standard-Configuration/master/tiel-standard-linux-installer.sh
 sudo chmod +x tiel-standard-linux-installer.sh
 ./tiel-standard-linux-installer.sh true
+sudo rm ~/.tiel-standard/tiel-standard-linux-installer.sh
 ```
 The script downloads the files it needs to perform its job to the `~/.tiel-standard/` directory. If this directory does not exist, the script assumes that it is performing a full first-time setup. If the directory _does_ exist, you can still force the application to act as if it were performing its first-time setup by passing a `true` parameter, `./tiel-standard-linux-installer.sh true`.
 

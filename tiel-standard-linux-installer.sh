@@ -37,7 +37,8 @@ find /usr/local/bin/ -type f -iname "*.sh" -exec sudo chmod +x {} \;
 
 ## Copy the provided gpg configuration file to where it belongs.
 echo "* updating gpg.conf file with preferred keyserver settings"
-sudo cp ./.gnupg/gpg.conf ~/.gnupg1/gpg.conf
+mkdir ~/.gnupg
+sudo cp ./.gnupg/gpg.conf ~/.gnupg/gpg.conf
 
 ## Copy the provided pacman gpg file to where it belongs.
 echo "* updating pacman gpg.conf file with preferred keyserver settings"
