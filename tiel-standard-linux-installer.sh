@@ -25,32 +25,44 @@ fi
 
 ## Pull the most recent standard configuration.
 cd "${tiel_dir}"
-git clone https://github.com/Tiel-io/Tiel-Standard-Configuration.git
+if [ "$first_time" = true ]; then
+  git clone https://github.com/Tiel-io/Tiel-Standard-Configuration.git
+fi
 cd Tiel-Standard-Configuration
 git fetch --all
 git reset --hard origin/master
 sudo cp -a ./usr/local/bin/. /usr/local/bin/
 find /usr/local/bin/ -type f -iname "*.sh" -exec sudo chmod +x {} \;
+
+## Copy the provided gpg configuration file to where it belongs.
+echo "* updating gpg.conf file with preferred keyserver settings"
+sudo cp ./.gnupg/gpg.conf ~/.gnupg1/gpg.conf
+
+## Copy the provided pacman gpg file to where it belongs.
+echo "* updating pacman gpg.conf file with preferred keyserver settings"
+sudo cp ./etc/pacman.d/gnupg/gpg.conf /etc/pacman.d/gnupg/gpg.conf
 echo "--- Tiel Standard installation files are prepared. ---"
 echo ""
 
-## Copy the provided gpg configuration file to where it belongs.
-## TODO.
-
-## Copy the provided pacman gpg file to where it belongs.
-## TODO.
-
 ## Install the Arch Linux keyring.
-## TODO.
+sudo pacman -S archlinux-keyring --needed
 
 ## Update the system.
-## TODO.
+sudo pacman -Syu --overwrite /usr/lib\*/p11-kit-trust.so
+yay
 
-## Install standard programs.
-sudo pacman -S python-pip
+## Install or update standard programs if needed.
+sudo pacman -S python-pip --needed
+sudo pacman -S firefox --needed
+sudo pacman -S atom --needed
+sudo pacman -S gimp --needed
+yay -S discord-canary --noconfirm
+yay -S polybar --noconfirm
+yay -S gitkraken --noconfirm
 
 ## Remove unwanted programs.
-## TODO.
+sudo pacman -Rns midori
+sudo pacman -Rns geany
 
 ## Download some nice wallpaper images.
 echo "--- Downloading wallpapers. ---"
