@@ -40,6 +40,18 @@ def prepareDirectory(directory):
     if not os.path.exists(directory):
         os.makedirs(directory)
         print('* created wallpaper directory: {}'.format(directory))
+    else:
+        path, dirs, files = next(os.walk(directory))
+        file_count = len(files)
+        print('* found existing wallpaper directory: {} with {} files'.format(directory, file_count))
+        if file_count >= target:
+            print('* we already have enough images of the targeted sort; skipping further downloads!')
+            sys.exit()
+
+# Create the download directory.
+directory = expanduser(directory)
+directory = os.path.join(directory, subreddit)
+prepareDirectory(directory)
 
 # Checks whether or not our URL is an image.
 def isImg(URL):
@@ -103,11 +115,6 @@ def storeImg(URL):
         return True
     else: return False
 
-# Create the download directory.
-directory = expanduser(directory)
-directory = os.path.join(directory, subreddit)
-prepareDirectory(directory)
-
 # Retrieve posts.
 print(GREEN + '* retrieving post URLs ...' + NC)
 after = ''
@@ -140,6 +147,7 @@ for post in posts:
     elif alreadyDownloaded(post):
         print(RED + '* {}) skipping locally-present image.'.format(index) + NC)
         index += 1
+
         continue
 
     else:
@@ -154,4 +162,4 @@ for post in posts:
         except:
             print(RED + '* {}) skipping an image which took too long to download.'.format(index) + NC)
             index += 1
-print(ORANGE + '* {}'.format(downloadCount) + PURPLE + ' images were downloaded to ' + ORANGE + '{}.'.format(directory) + NC)
+print(ORANGE + '* {}'.format(downloadCount) + PURPLE + ' images were downloaded to ' + ORANGE + '{}' + PURPLE + '.'.format(directory) + NC)

@@ -20,7 +20,7 @@ if [ ! -d "${tiel_dir}" ]; then
   mkdir -p "${tiel_dir}"
 else
   echo "* found existing Tiel Standard directory: $tiel_dir"
-  first_time=false
+  first_time=$1
 fi
 
 ## Pull the most recent standard configuration.
