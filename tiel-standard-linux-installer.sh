@@ -85,7 +85,7 @@ if [ "$first_time" = true ]; then
   done
   echo "* caching font: fc-cache -f"
   fc-cache -f
-  fira-code-default
+  fira-code-default.sh
   echo "--- Custom font files set. ---"
   echo ""
 fi
