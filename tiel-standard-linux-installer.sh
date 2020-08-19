@@ -30,10 +30,14 @@ if [ "$first_time" = true ]; then
   git clone https://github.com/Tiel-io/Tiel-Standard-Configuration.git
 fi
 cd Tiel-Standard-Configuration
+if [ "$first_time" = true ]; then
+  git clone https://github.com/TimTinkers/rofi-iwd-menu.git
+fi
 git fetch --all
 git reset --hard origin/master
 
 echo "* updating all user scripts"
+sudo cp ./rofi-iwd-menu/rofi-wifi-menu.sh /usr/local/bin/rofi-wifi-menu.sh
 sudo cp -a ./usr/local/bin/. /usr/local/bin/
 find /usr/local/bin/ -type f -iname "*.sh" -exec sudo chmod +x {} \;
 
