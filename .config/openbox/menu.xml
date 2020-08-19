@@ -189,7 +189,7 @@
 		<separator/>
 		<item label="Lock Screen">
 			<action name="Execute">
-				<command>betterlockscreen -l blur & betterlockscreen -w & betterlockscreen -u Pictures/Wallpapers/</command>
+				<command>betterlockscreen -l blur &amp; betterlockscreen -w &amp; betterlockscreen -u Pictures/Wallpapers/</command>
 			</action>
 		</item>
 		<menu id="obExit" label="Exit">
