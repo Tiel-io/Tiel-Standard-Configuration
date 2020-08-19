@@ -26,6 +26,7 @@ fi
 
 ## Pull the most recent standard configuration.
 cd "${tiel_dir}"
+echo "* getting most up-to-date standard configuration content"
 if [ "$first_time" = true ]; then
   git clone https://github.com/Tiel-io/Tiel-Standard-Configuration.git
 fi
@@ -36,10 +37,15 @@ fi
 git fetch --all
 git reset --hard origin/master
 
+## Move scripts to the user's bin for easy execution, and make them executable.
 echo "* updating all user scripts"
 sudo cp ./rofi-iwd-menu/rofi-wifi-menu.sh /usr/local/bin/rofi-wifi-menu.sh
 sudo cp -a ./usr/local/bin/. /usr/local/bin/
 find /usr/local/bin/ -type f -iname "*.sh" -exec sudo chmod +x {} \;
+
+## Copy configuration files to the user's configuration directory.
+echo "* updating all user scripts"
+sudo cp -a ./config/. ~/.config/
 
 ## Copy the provided gpg configuration file to where it belongs.
 echo "* updating gpg.conf file with preferred keyserver settings"
@@ -70,7 +76,7 @@ yay -S discord-canary --noconfirm
 yay -S polybar --noconfirm
 yay -S gitkraken --noconfirm
 
-## Remove unwanted programs.
+## Remove unwanted programs which might be present.
 sudo pacman -Rns midori
 sudo pacman -Rns geany
 sudo pacman -Rns networkmanager-dmenu-git
