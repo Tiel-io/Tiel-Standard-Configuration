@@ -45,7 +45,7 @@ find /usr/local/bin/ -type f -iname "*.sh" -exec sudo chmod +x {} \;
 
 ## Copy configuration files to the user's configuration directory.
 echo "* updating all user scripts"
-sudo cp -a ./config/. ~/.config/
+sudo cp -a ./.config/. ~/.config/
 
 ## Copy the provided gpg configuration file to where it belongs.
 echo "* updating gpg.conf file with preferred keyserver settings"
