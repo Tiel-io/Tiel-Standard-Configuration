@@ -32,6 +32,8 @@ fi
 cd Tiel-Standard-Configuration
 git fetch --all
 git reset --hard origin/master
+
+echo "* updating all user scripts"
 sudo cp -a ./usr/local/bin/. /usr/local/bin/
 find /usr/local/bin/ -type f -iname "*.sh" -exec sudo chmod +x {} \;
 
@@ -54,6 +56,7 @@ sudo pacman -Syu --overwrite /usr/lib\*/p11-kit-trust.so --noconfirm
 yay -Syu --devel --timeupdate --noconfirm
 
 ## Install or update standard programs if needed.
+sudo pacman -S iwd --needed
 sudo pacman -S python-pip --needed
 sudo pacman -S firefox --needed
 sudo pacman -S atom --needed
@@ -65,6 +68,16 @@ yay -S gitkraken --noconfirm
 ## Remove unwanted programs.
 sudo pacman -Rns midori
 sudo pacman -Rns geany
+sudo pacman -Rns networkmanager-dmenu-git
+sudo pacman -Rns networkmanager
+sudo pacman -Rns nm-connection-editor
+sudo pacman -Rns wpa_supplicant
+sudo pacman -Rns netctl
+sudo pacman -Rns dhcpcd
+
+## Prepare our iwd directory for our Rofi management script to run later.
+sudo chmod o=rw /var/lib/iwd
+sudo chmod o=rw /var/lib/iwd/*
 
 ## Download some nice wallpaper images.
 echo "--- Downloading wallpapers. ---"
@@ -112,6 +125,10 @@ if [ "$first_time" = true ]; then
   sudo rm -rf /usr/share/adi1090x/
   sudo rm -rf ~/.face
   sudo rm -rf ~/Music/*
+  sudo rm -rf /usr/local/bin/apps_as_root.sh
+  sudo rm -rf /usr/local/bin/askpass_rofi.sh
+  sudo rm -rf /usr/local/bin/askpass_zenity.sh
+  sudo rm -rf /usr/local/bin/change_font.sh
   echo "--- Unwanted default files removed. ---"
   echo ""
 fi
