@@ -60,11 +60,12 @@ sudo pacman -Syu --overwrite /usr/lib\*/p11-kit-trust.so --noconfirm
 yay -Syu --devel --timeupdate --noconfirm
 
 ## Install or update standard programs if needed.
-sudo pacman -S iwd --needed
-sudo pacman -S python-pip --needed
-sudo pacman -S firefox --needed
-sudo pacman -S atom --needed
-sudo pacman -S gimp --needed
+sudo pacman -S base-devel --needed --noconfirm
+sudo pacman -S iwd --needed --noconfirm
+sudo pacman -S python-pip --needed --noconfirm
+sudo pacman -S firefox --needed --noconfirm
+sudo pacman -S atom --needed --noconfirm
+sudo pacman -S gimp --needed --noconfirm
 yay -S discord-canary --noconfirm
 yay -S polybar --noconfirm
 yay -S gitkraken --noconfirm
