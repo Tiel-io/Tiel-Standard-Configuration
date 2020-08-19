@@ -52,7 +52,7 @@ cd ../
 echo "* updating all user scripts"
 sudo cp ./rofi-iwd-menu/rofi-wifi-menu.sh /usr/local/bin/rofi-wifi-menu.sh
 sudo cp ./Reddit-Wallpaper-Downloader/get-wallpapers.sh /usr/local/bin/get-wallpapers.sh
-sudp cp -a ./Reddit-Wallpaper-Downloader/wallpaper-downloader/. /usr/local/bin/wallpaper-downloader/
+sudo cp -a ./Reddit-Wallpaper-Downloader/wallpaper-downloader/. /usr/local/bin/wallpaper-downloader/
 sudo cp -a ./usr/local/bin/. /usr/local/bin/
 find /usr/local/bin/ -type f -iname "*.sh" -exec sudo chmod +x {} \;
 
