@@ -2,7 +2,7 @@
 nitrogen --restore
 
 ## Update the Plymouth theme being used.
-set-random-plymouth-theme.sh
+set-random-plymouth-theme.sh &
 
 ## xfce4-settings daemon
 xfsettingsd &
