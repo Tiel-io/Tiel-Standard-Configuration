@@ -153,8 +153,8 @@ if [ "$first_time" = true ]; then
   echo ""
 fi
 
-## Update the Plymouth theme.
-
+## Update the Plymouth theme in use.
+set-random-plymouth-theme.sh
 
 ## Remove some unneeded content that is included in Archcraft by default.
 if [ "$first_time" = true ]; then
