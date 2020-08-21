@@ -153,9 +153,6 @@ if [ "$first_time" = true ]; then
   echo ""
 fi
 
-## Update the Plymouth theme in use.
-set-random-plymouth-theme.sh
-
 ## Remove some unneeded content that is included in Archcraft by default.
 if [ "$first_time" = true ]; then
   echo "--- Removing unwanted default files. ---"
@@ -170,9 +167,13 @@ if [ "$first_time" = true ]; then
   sudo rm -rf /usr/local/bin/askpass_rofi.sh
   sudo rm -rf /usr/local/bin/askpass_zenity.sh
   sudo rm -rf /usr/local/bin/change_font.sh
+  sudo rm -rf /usr/local/bin/set-random-plmouth-theme.sh
   echo "--- Unwanted default files removed. ---"
   echo ""
 fi
+
+## Update the Plymouth theme in use.
+set-random-plymouth-theme.sh
 
 ## Restart Openbox, and we're done!
 echo "--- Restarting Openbox to show changes. ---"
