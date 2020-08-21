@@ -160,7 +160,7 @@
 			<separator/>
 			<item label="Change Wallpaper">
 				<action name="Execute">
-					<command>nitrogen</command>
+					<command>nitrogen ~/Pictures/Wallpapers</command>
 				</action>
 			</item>
 			<item label="Appearance Settings">

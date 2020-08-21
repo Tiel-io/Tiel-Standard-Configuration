@@ -3,7 +3,7 @@
 ## This script installs and configures a standard experience over the top of the
 ## Archcraft OS distributed by Aditya Shakya.
 ## @author Tim Clancy
-## @date 8.17.2020
+## @date 8.21.2020
 
 ## Immediately prompt for administrator permissions.
 echo "--- Prompting for administrator permission. ---"
@@ -47,6 +47,13 @@ cd Reddit-Wallpaper-Downloader
 git fetch --all
 git reset --hard origin/master
 cd ../
+if [ "$first_time" = true ]; then
+  git clone https://github.com/TimTinkers/Curated-Plymouth-Themes.git
+fi
+cd Curated-Plymouth-Themes
+git fetch --all
+git reset --hard origin/master
+cd ../
 
 ## Move scripts to the user's bin for easy execution, and make them executable.
 echo "* updating all user scripts"
@@ -57,8 +64,13 @@ sudo cp -a ./usr/local/bin/. /usr/local/bin/
 find /usr/local/bin/ -type f -iname "*.sh" -exec sudo chmod +x {} \;
 
 ## Copy configuration files to the user's configuration directory.
-echo "* updating all user scripts"
+echo "* updating all user configurations"
 sudo cp -a ./.config/. ~/.config/
+
+## Copy the provided iwd configuration file to where it belongs.
+echo "* updating iwd main.conf file with network configuration settings"
+mkdir /etc/iwd
+sudo cp ./etc/iwd/main.conf /etc/iwd/main.conf
 
 ## Copy the provided gpg configuration file to where it belongs.
 echo "* updating gpg.conf file with preferred keyserver settings"
@@ -97,7 +109,7 @@ sudo pacman -Rns networkmanager
 sudo pacman -Rns nm-connection-editor
 sudo pacman -Rns wpa_supplicant
 sudo pacman -Rns netctl
-sudo pacman -Rns dhcpcd
+sudo pacman -RnS dhcpcd
 
 ## Prepare our iwd directory for our Rofi management script to run later.
 sudo chmod o=rw /var/lib/iwd
@@ -141,9 +153,14 @@ if [ "$first_time" = true ]; then
   echo ""
 fi
 
+## Update the Plymouth theme.
+
+
 ## Remove some unneeded content that is included in Archcraft by default.
 if [ "$first_time" = true ]; then
   echo "--- Removing unwanted default files. ---"
+  sudo rm -rf /usr/share/plymouth/themes/*
+  sudo rm -rf /usr/share/backgrounds/
   sudo rm -rf /usr/share/applications/about.desktop
   sudo rm -rf /usr/local/bin/about.sh
   sudo rm -rf /usr/share/adi1090x/
