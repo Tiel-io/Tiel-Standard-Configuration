@@ -171,8 +171,11 @@ if [ "$first_time" = true ]; then
   echo ""
 fi
 
-## Update the Plymouth theme in use.
-set-random-plymouth-theme.sh
+## Update, disable, and reactivate services.
+echo "* updating all custom services"
+sudo cp -a ./etc/systemd/system/. /etc/systemd/system/
+sudo systemctl disable --now random-plymouth-theme@.service
+sudo systemctl enable --now random-plymouth-theme@.service
 
 ## Restart Openbox, and we're done!
 echo "--- Restarting Openbox to show changes. ---"

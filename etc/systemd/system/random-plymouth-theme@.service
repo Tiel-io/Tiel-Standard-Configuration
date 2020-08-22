@@ -1,0 +1,10 @@
+[Unit]
+Description=Plymouth theme randomizer service.
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/set-random-plymouth-theme.sh
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
