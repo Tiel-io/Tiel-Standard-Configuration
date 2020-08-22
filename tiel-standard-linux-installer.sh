@@ -117,7 +117,7 @@ sudo chmod o=rw /var/lib/iwd/*
 
 ## Download some nice wallpaper images.
 echo "--- Downloading wallpapers. ---"
-cd reddit-wallpaper-downloader
+cd Reddit-Wallpaper-Downloader
 pip install requests
 pip install Pillow
 pip install screeninfo
