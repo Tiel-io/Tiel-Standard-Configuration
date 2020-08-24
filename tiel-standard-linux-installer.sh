@@ -6,8 +6,14 @@
 ## @date 8.21.2020
 
 ## Immediately prompt for administrator permissions.
+## Use our Rofi password helper to ask for the sudo password if it is present.
+export SUDO_ASKPASS=/usr/local/bin/rofi-ask-password.sh
 echo "--- Prompting for administrator permission. ---"
-sudo ls > /dev/null
+if [ ! -f $SUDO_ASKPASS ]; then
+  sudo ls > /dev/null
+else
+  sudo -A ls > /dev/null
+fi
 echo "--- Permission received. ---"
 echo ""
 
