@@ -15,13 +15,27 @@ echo ""
 echo "--- Preparing Tiel Standard installation files. ---"
 tiel_dir="${HOME}/.tiel-standard"
 first_time=false
+MADE_TIEL_DIR=false
 if [ ! -d "${tiel_dir}" ]; then
   echo "* creating Tiel Standard directory: mkdir -p $tiel_dir"
   mkdir -p "${tiel_dir}"
   first_time=true
+  MADE_TIEL_DIR=true
 else
   echo "* found existing Tiel Standard directory: $tiel_dir"
   first_time=$1
+fi
+
+## Create the Tiel standard configuration file.
+TIEL_CONFIG="${HOME}/.config/tiel-standard"
+if [ ! -d "${TIEL_CONFIG}" ]; then
+  echo "* creating Tiel Standard configuration directory: mkdir -p $TIEL_CONFIG"
+  mkdir -p "${TIEL_CONFIG}"
+  touch "$TIEL_CONFIG/main.conf"
+  echo "RANDOMIZE_DESKTOP=true" >> "$TIEL_CONFIG/main.conf"
+  echo "RANDOMIZE_BOOT=true" >> "$TIEL_CONFIG/main.conf"
+else
+  echo "* found existing Tiel Standard configuration directory: $TIEL_CONFIG"
 fi
 
 ## Pull the most recent standard configuration.
@@ -57,6 +71,7 @@ cd ../
 
 ## Move scripts to the user's bin for easy execution, and make them executable.
 echo "* updating all user scripts"
+sudo cp ./Curated-Plymouth-Themes/rofi-select-theme.sh /usr/local/bin/rofi-select-theme.sh
 sudo cp ./rofi-iwd-menu/rofi-wifi-menu.sh /usr/local/bin/rofi-wifi-menu.sh
 sudo cp ./Reddit-Wallpaper-Downloader/get-wallpapers.sh /usr/local/bin/get-wallpapers.sh
 sudo cp -a ./Reddit-Wallpaper-Downloader/wallpaper-downloader/. /usr/local/bin/wallpaper-downloader/
@@ -93,6 +108,9 @@ yay -Syu --devel --timeupdate --noconfirm
 ## Install or update standard programs if needed.
 sudo pacman -S base-devel --needed --noconfirm
 sudo pacman -S iwd --needed --noconfirm
+sudo pacman -S ntp --needed --noconfirm
+sudo pacman -S pulseaudio --needed --noconfirm
+sudo pacman -S pavucontrol --needed --noconfirm
 sudo pacman -S python-pip --needed --noconfirm
 sudo pacman -S firefox --needed --noconfirm
 sudo pacman -S atom --needed --noconfirm
@@ -161,12 +179,16 @@ if [ "$first_time" = true ]; then
   sudo rm -rf /usr/local/bin/about.sh
   sudo rm -rf /usr/share/adi1090x/
   sudo rm -rf ~/.face
-  sudo rm -rf ~/Music/*
+  if [ "$MADE_TIEL_DIR" = true ]; then
+    sudo rm -rf ~/Music/*
+  fi
   sudo rm -rf /usr/local/bin/apps_as_root.sh
   sudo rm -rf /usr/local/bin/askpass_rofi.sh
   sudo rm -rf /usr/local/bin/askpass_zenity.sh
   sudo rm -rf /usr/local/bin/change_font.sh
   sudo rm -rf /usr/local/bin/set-random-plmouth-theme.sh
+  sudo rm -rf /usr/local/bin/ob_powermenu
+  sudo rm -rf /usr/local/bin/ob-kb-pipemenu
   echo "--- Unwanted default files removed. ---"
   echo ""
 fi
@@ -176,6 +198,7 @@ echo "* updating all custom services"
 sudo cp -a ./etc/systemd/system/. /etc/systemd/system/
 sudo systemctl disable --now random-plymouth-theme.service
 sudo systemctl enable --now random-plymouth-theme.service
+sudo systemctl enable --now ntpd.service
 
 ## Restart Openbox, and we're done!
 echo "--- Restarting Openbox to show changes. ---"
