@@ -37,5 +37,7 @@ menuStart
     menuItem "Power Settings" "xfce4-power-manager-settings"
     menuItem "Audio Settings" "pavucontrol"
     menuItem "Other Settings" "xfce4-settings-manager"
+    menuSeparator
+    menuItem "Keybindings" "ob-kb-pipemenu.sh"
 menuEnd
 exit 0

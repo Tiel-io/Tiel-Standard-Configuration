@@ -74,8 +74,6 @@ if [[ $1 = '--keybinds' ]]; then
 fi
 
 menuStart
-    menuItem "Backup and Edit rc.xml" "ob-kb-pipemenu --rcedit"
-    menuSeparator
     menuItem "Display Keybinds in window" "ob-kb --gui"
     echo '        <menu execute="ob-kb-pipemenu --keybinds" id="Display keybinds" label="Display Keybinds in menu"/>'
 menuEnd

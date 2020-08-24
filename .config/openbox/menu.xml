@@ -110,36 +110,36 @@
 			</item>
 		</menu>
     <menu id="root-menu-8365" label="Screenshot">
-      <item label="Screenshot Now">
+      <item label="Area">
         <action name="Execute">
-          <execute>shotnow</execute>
+          <execute>shot-area.sh</execute>
         </action>
       </item>
-      <item label="Screenshot In 5">
+      <item label="Window">
         <action name="Execute">
-          <execute>shotin5</execute>
+          <execute>shot-window.sh</execute>
         </action>
       </item>
-      <item label="Screenshot In 10">
+      <separator/>
+      <item label="Now">
         <action name="Execute">
-          <execute>shotin10</execute>
+          <execute>shot-now.sh</execute>
         </action>
       </item>
-      <item label="Screenshot Area">
+      <item label="Five Seconds">
         <action name="Execute">
-          <execute>shotArea</execute>
+          <execute>shot-delay.sh 5</execute>
         </action>
       </item>
-      <item label="Screenshot Window">
+      <item label="Ten Seconds">
         <action name="Execute">
-          <execute>shotWindow</execute>
+          <execute>shot-delay.sh 10</execute>
         </action>
       </item>
     </menu>
 		<separator/>
-		<menu execute="ob-recent-files-pipemenu" id="pipe-164328" label="Recent Files"/>
-		<menu execute="ob-places-pipemenu --recent ~/" id="pipe-placesmenu" label="Places"/>
-		<menu execute="ob-kb-pipemenu.sh" id="keybinds" label="Keybinds"/>
+		<menu execute="ob-places-pipemenu.sh --recent ~/" id="pipe-placesmenu" label="Home Folder"/>
+		<menu execute="ob-recent-files-pipemenu.sh" id="pipe-164328" label="Recent Files"/>
 		<separator/>
     <menu execute="ob-preferences-pipemenu.sh" id="pipe-preferences" label="Preferences"/>
 		<item label="Lock Screen">

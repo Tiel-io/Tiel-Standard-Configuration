@@ -116,6 +116,8 @@ else
 fi
 sudo cp ./usr/share/lxdm/themes/archcraft/login.png /usr/share/lxdm/themes/archcraft/login.png
 sudo cp ./usr/share/lxdm/themes/archcraft/tiel-white-round-no-edges.png /usr/share/lxdm/themes/archcraft/nobody.png
+sudo cp ./usr/share/lxdm/themes/archcraft/greeter-gtk3.ui /usr/share/lxdm/themes/archcraft/greeter-gtk3.ui
+sudo cp ./usr/share/lxdm/themes/archcraft/greeter.ui /usr/share/lxdm/themes/archcraft/greeter.ui
 
 ## Install the Arch Linux keyring.
 sudo pacman -S archlinux-keyring --needed
@@ -208,6 +210,13 @@ if [ "$first_time" = true ]; then
   sudo rm -rf /usr/local/bin/set-random-plmouth-theme.sh
   sudo rm -rf /usr/local/bin/ob_powermenu
   sudo rm -rf /usr/local/bin/ob-kb-pipemenu
+  sudo rm -rf /usr/local/bin/ob-places-pipemenu
+  sudo rm -rf /usr/local/bin/ob-recent-files-pipemenu
+  sudo rm -rf /usr/local/bin/shotArea
+  sudo rm -rf /usr/local/bin/shotin5
+  sudo rm -rf /usr/local/bin/shotin10
+  sudo rm -rf /usr/local/bin/shotnow
+  sudo rm -rf /usr/local/bin/shotWindow
   echo "--- Unwanted default files removed. ---"
   echo ""
 fi
