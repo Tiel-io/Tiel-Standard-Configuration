@@ -7,10 +7,11 @@ source $MAIN_CONF
 ## If we are not supposed to cycle wallpapers, load the default one.
 if [ "$RANDOMIZE_DESKTOP" = false ]; then
   nitrogen --restore &
+  betterlockscreen -w &
 
 ## Update the desktop background and select a new lock image.
 else
-  betterlockscreen -w & betterlockscreen -u ~/Pictures/Wallpapers/ &
+  betterlockscreen -u ~/Pictures/Wallpapers/ & betterlockscreen -w &
 fi
 
 ## xfce4-settings daemon

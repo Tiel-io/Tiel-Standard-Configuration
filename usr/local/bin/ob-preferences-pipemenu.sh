@@ -28,7 +28,7 @@ fi
 menuStart
     echo '<item label="Refresh Openbox"><action name="Restart"/></item>'
     menuSeparator
-    menuItem "Change Wallpaper" "nitrogen ~/Pictures/Wallpapers"
+    menuItem "Change Wallpaper" "nitrogen-wallpaper-selector.sh"
     menuItem "Change Boot Theme" "rofi-select-theme.sh"
     menuItem "Toggle Random Wallpaper: $DESKTOP_DESCRIPTION" "set-tiel-standard-config.sh RANDOMIZE_DESKTOP $DESKTOP_TOGGLE"
     menuItem "Toggle Random Boot Theme: $BOOT_DESCRIPTION" "set-tiel-standard-config.sh RANDOMIZE_BOOT $BOOT_TOGGLE"
