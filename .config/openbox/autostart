@@ -1,5 +1,17 @@
-## Restore Wallpaper
-nitrogen --restore
+#!/usr/bin/env bash
+
+## Load the current Tiel Standard configuration.
+readonly MAIN_CONF="$HOME/.config/tiel-standard/main.conf"
+source $MAIN_CONF
+
+## If we are not supposed to cycle wallpapers, load the default one.
+if [ "$RANDOMIZE_DESKTOP" = false ]; then
+  nitrogen --restore &
+
+## Update the desktop background and select a new lock image.
+else
+  betterlockscreen -w & betterlockscreen -u ~/Pictures/Wallpapers/ &
+fi
 
 ## xfce4-settings daemon
 xfsettingsd &
