@@ -104,6 +104,19 @@ sudo cp ./etc/pacman.d/gnupg/gpg.conf /etc/pacman.d/gnupg/gpg.conf
 echo "--- Tiel Standard installation files are prepared. ---"
 echo ""
 
+## Calculate the user's screen aspect ratio and set up their login screen.
+DIMENSIONS=$(xdpyinfo | grep dimensions | sed -r 's/^[^0-9]*([0-9]+x[0-9]+).*$/\1/')
+WIDTH=$(echo $DIMENSIONS | sed -r 's/x.*//')
+HEIGHT=$(echo $DIMENSIONS | sed -r 's/.*x//')
+ASPECT_RATIO=$(bc -l <<< "$WIDTH/$HEIGHT")
+if [ "$ASPECT_RATIO" > 2 ]; then
+  sudo cp ./usr/share/lxdm/themes/archcraft/cockatiel-wallpaper-21-9.jpg /usr/share/lxdm/themes/archcraft/bg.png
+else
+  sudo cp ./usr/share/lxdm/themes/archcraft/cockatiel-wallpaper-16-9.jpg /usr/share/lxdm/themes/archcraft/bg.png
+fi
+sudo cp ./usr/share/lxdm/themes/archcraft/login.png /usr/share/lxdm/themes/archcraft/login.png
+sudo cp ./usr/share/lxdm/themes/archcraft/tiel-white-round-no-edges.png /usr/share/lxdm/themes/archcraft/nobody.png
+
 ## Install the Arch Linux keyring.
 sudo pacman -S archlinux-keyring --needed
 

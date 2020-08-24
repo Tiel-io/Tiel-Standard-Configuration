@@ -12,23 +12,24 @@
 				<command>firefox</command>
 			</action>
 		</item>
-    <item label="Atom">
-      <action name="Execute">
-        <command>atom</command>
-      </action>
-    </item>
+    <separator/>
 		<item label="File Manager">
 			<action name="Execute">
 				<command>thunar</command>
 			</action>
 		</item>
-    <item label="Manage WiFi">
+    <item label="WiFi Manager">
 			<action name="Execute">
 				<command>rofi-wifi-menu.sh</command>
 			</action>
 		</item>
 		<separator/>
     <menu id="root-menu-srct" label="Shortcuts">
+      <item label="Atom">
+        <action name="Execute">
+          <command>atom</command>
+        </action>
+      </item>
       <item label="GitKraken">
         <action name="Execute">
           <execute>gitkraken</execute>
