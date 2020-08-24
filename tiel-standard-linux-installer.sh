@@ -128,6 +128,7 @@ yay -Syu --devel --timeupdate --noconfirm
 
 ## Install or update standard programs if needed.
 sudo pacman -S base-devel --needed --noconfirm
+sudo pacman -S asar --needed --noconfirm
 sudo pacman -S iwd --needed --noconfirm
 sudo pacman -S ntp --needed --noconfirm
 sudo pacman -S pulseaudio --needed --noconfirm
@@ -141,14 +142,14 @@ yay -S polybar --noconfirm
 yay -S gitkraken --noconfirm
 
 ## Remove unwanted programs which might be present.
-sudo pacman -Rns midori
-sudo pacman -Rns geany
-sudo pacman -Rns networkmanager-dmenu-git
-sudo pacman -Rns networkmanager
-sudo pacman -Rns nm-connection-editor
-sudo pacman -Rns wpa_supplicant
-sudo pacman -Rns netctl
-sudo pacman -RnS dhcpcd
+sudo pacman -Rns midori --noconfirm
+sudo pacman -Rns geany --noconfirm
+sudo pacman -Rns networkmanager-dmenu-git --noconfirm
+sudo pacman -Rns networkmanager --noconfirm
+sudo pacman -Rns nm-connection-editor --noconfirm
+sudo pacman -Rns wpa_supplicant --noconfirm
+sudo pacman -Rns netctl --noconfirm
+sudo pacman -RnS dhcpcd --noconfirm
 
 ## Prepare our iwd directory for our Rofi management script to run later.
 sudo chmod o=rw /var/lib/iwd
