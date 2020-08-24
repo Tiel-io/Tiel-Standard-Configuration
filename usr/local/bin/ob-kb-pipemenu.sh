@@ -74,8 +74,8 @@ if [[ $1 = '--keybinds' ]]; then
 fi
 
 menuStart
-    menuItem "Display Keybinds in window" "ob-kb --gui"
-    echo '        <menu execute="ob-kb-pipemenu --keybinds" id="Display keybinds" label="Display Keybinds in menu"/>'
+    menuItem "Keybind Window" "ob-kb --gui"
+    echo '        <menu execute="ob-kb-pipemenu.sh --keybinds" id="Display keybinds" label="Keybind Menu"/>'
 menuEnd
 
 exit 0

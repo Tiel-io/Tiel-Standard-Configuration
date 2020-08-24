@@ -38,6 +38,6 @@ menuStart
     menuItem "Audio Settings" "pavucontrol"
     menuItem "Other Settings" "xfce4-settings-manager"
     menuSeparator
-    menuItem "Keybindings" "ob-kb-pipemenu.sh"
+    echo '<menu execute="ob-kb-pipemenu.sh" id="keybinds" label="Keybindings"/>'
 menuEnd
 exit 0
