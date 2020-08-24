@@ -220,6 +220,7 @@ if [ "$first_time" = true ]; then
   sudo rm -rf /usr/local/bin/shotWindow
   sudo rm -rf ~/.config/plank/dock1/launchers/applications.dockitem
   sudo rm -rf ~/.config/plank/dock1/launchers/xfce-settings-manager.dockitem
+  exec plank &
   echo "--- Unwanted default files removed. ---"
   echo ""
 fi
