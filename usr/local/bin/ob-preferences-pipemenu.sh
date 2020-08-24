@@ -27,7 +27,7 @@ fi
 ## Display the menu.
 menuStart
     echo '<item label="Refresh Openbox"><action name="Restart"/></item>'
-    menuItem "Update Tiel Standard" "~/.tiel-standard/Tiel-Standard-Configuration/tiel-standard-bootstrapper.sh"
+    menuItem "Update Tiel Standard" "termite -e '~/.tiel-standard/Tiel-Standard-Configuration/tiel-standard-bootstrapper.sh'"
     menuSeparator
     menuItem "Change Wallpaper" "nitrogen-wallpaper-selector.sh"
     menuItem "Change Boot Theme" "rofi-select-theme.sh"
