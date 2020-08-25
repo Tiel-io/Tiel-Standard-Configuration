@@ -131,6 +131,7 @@ yay -Syu --devel --timeupdate --noconfirm
 ## Install or update standard programs if needed.
 sudo pacman -S base-devel --needed --noconfirm
 sudo pacman -S asar --needed --noconfirm
+sudo pacman -S pacman-contrib --needed --noconfirm
 sudo pacman -S iwd --needed --noconfirm
 sudo pacman -S ntp --needed --noconfirm
 sudo pacman -S pulseaudio --needed --noconfirm
@@ -144,10 +145,22 @@ sudo pacman -S telegram-desktop --needed --noconfirm
 sudo pacman -S signal-desktop --needed --noconfirm
 sudo pacman -S hicolor-icon-theme --needed --noconfirm
 sudo pacman -S papirus-icon-theme --needed --noconfirm
+sudo pacman -S intellij-idea-community-edition --needed --noconfirm
+sudo pacman -S calibre --needed --noconfirm
+sudo pacman -S geocode-glib --needed --noconfirm
+sudo pacman -S graphviz --needed --noconfirm
+sudo pacman -S gtkspell3 --needed --noconfirm
+sudo pacman -S libgexiv2 --needed --noconfirm
+sudo pacman -S osm-gps-map --needed --noconfirm
+sudo pacman -S rcs --needed --noconfirm
+sudo pacman -S gramps --needed --noconfirm
+yay -S bitwarden --noconfirm
 yay -S discord-canary --noconfirm
 yay -S slack-desktop --noconfirm
 yay -S polybar --noconfirm
 yay -S gitkraken --noconfirm
+yay -S insomnia --noconfirm
+yay -S zeal --noconfirm
 
 ## Remove unwanted programs which might be present.
 sudo pacman -Rns midori --noconfirm

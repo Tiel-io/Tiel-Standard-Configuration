@@ -12,6 +12,11 @@
 				<command>firefox</command>
 			</action>
 		</item>
+    <item label="Bitwarden">
+      <action name="Execute">
+        <command>bitwarden-desktop</command>
+      </action>
+    </item>
     <separator/>
 		<item label="File Manager">
 			<action name="Execute">
@@ -33,6 +38,11 @@
       <item label="GitKraken">
         <action name="Execute">
           <execute>gitkraken</execute>
+        </action>
+      </item>
+      <item label="Insomnia">
+        <action name="Execute">
+          <execute>insomnia</execute>
         </action>
       </item>
       <separator/>
