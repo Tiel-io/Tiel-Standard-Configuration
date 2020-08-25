@@ -75,6 +75,12 @@ git fetch --all
 git reset --hard origin/master
 cd ../
 
+## Install ytmdl.
+git clone https://github.com/deepjyoti30/ytmdl
+cd ytmdl
+sudo python setup.py install
+cd ../
+
 ## Move scripts to the user's bin for easy execution, and make them executable.
 echo "* updating all user scripts"
 sudo cp ./Curated-Plymouth-Themes/rofi-select-theme.sh /usr/local/bin/rofi-select-theme.sh
@@ -220,6 +226,7 @@ if [ "$first_time" = true ]; then
   sudo rm -rf /usr/local/bin/shotWindow
   sudo rm -rf ~/.config/plank/dock1/launchers/applications.dockitem
   sudo rm -rf ~/.config/plank/dock1/launchers/xfce-settings-manager.dockitem
+  sudo rm -rf /etc/mpd.conf
   exec plank &
   echo "--- Unwanted default files removed. ---"
   echo ""
