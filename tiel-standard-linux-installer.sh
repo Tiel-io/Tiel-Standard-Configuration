@@ -75,14 +75,6 @@ git fetch --all
 git reset --hard origin/master
 cd ../
 
-## Install ytmdl.
-git clone https://github.com/deepjyoti30/ytmdl
-cd ytmdl
-git fetch --all
-git reset --hard origin/master
-sudo python setup.py install
-cd ../
-
 ## Move scripts to the user's bin for easy execution, and make them executable.
 echo "* updating all user scripts"
 sudo cp ./Curated-Plymouth-Themes/rofi-select-theme.sh /usr/local/bin/rofi-select-theme.sh
@@ -169,6 +161,15 @@ sudo pacman -RnS dhcpcd --noconfirm
 ## Prepare our iwd directory for our Rofi management script to run later.
 sudo chmod o=rw /var/lib/iwd
 sudo chmod o=rw /var/lib/iwd/*
+
+## Install ytmdl.
+sudo pip install wheel
+git clone https://github.com/deepjyoti30/ytmdl
+cd ytmdl
+git fetch --all
+git reset --hard origin/master
+sudo python setup.py install
+cd ../
 
 ## Download some nice wallpaper images.
 echo "--- Downloading wallpapers. ---"
