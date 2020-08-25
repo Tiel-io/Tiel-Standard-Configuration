@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openbox_menu xmlns="http://openbox.org/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://openbox.org/  file:///usr/share/openbox/menu.xsd">
   <menu id="root-menu" title="Menu" label="Openbox 3">
-<!--	<separator label="Main Menu"/>  -->
+<!--	<separator label="Main Menu"/>🎮⎈  -->
 		<item label="Terminal">
 			<action name="Execute">
 				<command>termite</command>
@@ -30,57 +30,57 @@
 		</item>
 		<separator/>
     <menu id="root-menu-srct" label="Shortcuts">
-      <item label="Atom">
+      <item label="⚛️ Atom">
         <action name="Execute">
           <command>atom</command>
         </action>
       </item>
-      <item label="GitKraken">
+      <item label="💻 GitKraken">
         <action name="Execute">
           <execute>gitkraken</execute>
         </action>
       </item>
-      <item label="Insomnia">
+      <item label="🌘 Insomnia">
         <action name="Execute">
           <execute>insomnia</execute>
         </action>
       </item>
       <separator/>
-      <item label="Discord">
+      <item label="🐦 Discord">
         <action name="Execute">
           <execute>discord-canary</execute>
         </action>
       </item>
-      <item label="Telegram">
+      <item label="📻 Telegram">
         <action name="Execute">
           <execute>telegram-desktop</execute>
         </action>
       </item>
-      <item label="Slack">
+      <item label="️🗫 Slack">
         <action name="Execute">
           <execute>slack</execute>
         </action>
       </item>
-      <item label="Signal">
+      <item label="🗩 Signal">
         <action name="Execute">
           <execute>signal-desktop</execute>
         </action>
       </item>
       <separator/>
-      <item label="GIMP">
+      <item label="🖌️ GIMP">
         <action name="Execute">
           <execute>gimp</execute>
-        </action>
-      </item>
-      <item label="Color Picker">
-        <action name="Execute">
-          <execute>color_picker</execute>
         </action>
       </item>
       <separator/>
       <item label="🎶 Music Player">
         <action name="Execute">
           <execute>termite -e ncmpcpp</execute>
+        </action>
+      </item>
+      <item label="🎬 VLC">
+        <action name="Execute">
+          <execute>vlc</execute>
         </action>
       </item>
     </menu>

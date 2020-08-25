@@ -154,6 +154,8 @@ sudo pacman -S libgexiv2 --needed --noconfirm
 sudo pacman -S osm-gps-map --needed --noconfirm
 sudo pacman -S rcs --needed --noconfirm
 sudo pacman -S gramps --needed --noconfirm
+sudo pacman -S vlc --needed --noconfirm
+sudo pacman -S filezilla --needed --noconfirm
 yay -S bitwarden --noconfirm
 yay -S discord-canary --noconfirm
 yay -S slack-desktop --noconfirm
@@ -192,6 +194,9 @@ git fetch --all
 git reset --hard origin/master
 sudo python setup.py install
 cd ../
+
+## Copy Atom's configuration settings.
+sudo cp -a ./.atom/config.cson ~/.atom/config.cson
 
 ## Download some nice wallpaper images.
 echo "--- Downloading wallpapers. ---"
