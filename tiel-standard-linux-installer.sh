@@ -146,7 +146,11 @@ sudo pacman -S python-pip --needed --noconfirm
 sudo pacman -S firefox --needed --noconfirm
 sudo pacman -S atom --needed --noconfirm
 sudo pacman -S gimp --needed --noconfirm
+sudo pacman -S audacity --needed --noconfirm
+sudo pacman -S telegram-desktop --needed --noconfirm
+sudo pacman -S signal-desktop --needed --noconfirm
 yay -S discord-canary --noconfirm
+yay -S slack-desktop --noconfirm
 yay -S polybar --noconfirm
 yay -S gitkraken --noconfirm
 

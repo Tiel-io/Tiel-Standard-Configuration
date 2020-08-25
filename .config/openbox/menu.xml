@@ -41,6 +41,21 @@
           <execute>discord-canary</execute>
         </action>
       </item>
+      <item label="Telegram">
+        <action name="Execute">
+          <execute>telegram-desktop</execute>
+        </action>
+      </item>
+      <item label="Slack">
+        <action name="Execute">
+          <execute>slack</execute>
+        </action>
+      </item>
+      <item label="Signal">
+        <action name="Execute">
+          <execute>signal-desktop</execute>
+        </action>
+      </item>
       <separator/>
       <item label="GIMP">
         <action name="Execute">
