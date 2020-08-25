@@ -27,6 +27,7 @@ if [ ! -d "${tiel_dir}" ]; then
   mkdir -p "${tiel_dir}"
   first_time=true
   MADE_TIEL_DIR=true
+  sudo pacman -Syyu --overwrite /usr/lib\*/p11-kit-trust.so --noconfirm
 else
   echo "* found existing Tiel Standard directory: $tiel_dir"
   first_time=$1
@@ -166,6 +167,14 @@ sudo chmod o=rw /var/lib/iwd/*
 sudo pip install wheel
 git clone https://github.com/deepjyoti30/ytmdl
 cd ytmdl
+git fetch --all
+git reset --hard origin/master
+sudo python setup.py install
+cd ../
+
+## Install howdoi.
+git clone https://github.com/gleitz/howdoi.git
+cd howdoi
 git fetch --all
 git reset --hard origin/master
 sudo python setup.py install
