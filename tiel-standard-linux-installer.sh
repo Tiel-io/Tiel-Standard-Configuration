@@ -149,6 +149,8 @@ sudo pacman -S gimp --needed --noconfirm
 sudo pacman -S audacity --needed --noconfirm
 sudo pacman -S telegram-desktop --needed --noconfirm
 sudo pacman -S signal-desktop --needed --noconfirm
+sudo pacman -S hicolor-icon-theme --needed --noconfirm
+sudo pacman -S papirus-icon-theme --needed --noconfirm
 yay -S discord-canary --noconfirm
 yay -S slack-desktop --noconfirm
 yay -S polybar --noconfirm
