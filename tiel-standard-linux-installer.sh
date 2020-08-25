@@ -78,6 +78,8 @@ cd ../
 ## Install ytmdl.
 git clone https://github.com/deepjyoti30/ytmdl
 cd ytmdl
+git fetch --all
+git reset --hard origin/master
 sudo python setup.py install
 cd ../
 
@@ -93,6 +95,7 @@ find /usr/local/bin/ -type f -iname "*.sh" -exec sudo chmod +x {} \;
 ## Copy configuration files to the user's configuration directory.
 echo "* updating all user configurations"
 sudo cp -a ./.config/. ~/.config/
+sudo cp -a ./.ncmpcpp/config ~/.ncmpcpp/config
 
 ## Copy the provided iwd configuration file to where it belongs.
 echo "* updating iwd main.conf file with network configuration settings"
@@ -166,6 +169,7 @@ echo "--- Downloading wallpapers. ---"
 pip install requests
 pip install Pillow
 pip install screeninfo
+pip install pycountry
 get-wallpapers.sh
 echo "--- Downloaded wallpapers. ---"
 echo ""

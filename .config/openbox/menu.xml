@@ -53,14 +53,9 @@
         </action>
       </item>
       <separator/>
-      <item label="Music Player">
+      <item label="🎶 Music Player">
         <action name="Execute">
           <execute>termite -e ncmpcpp</execute>
-        </action>
-      </item>
-      <item label="🎶 Visualizer">
-        <action name="Execute">
-          <execute>termite -e 'ncmpcpp -s visualizer'</execute>
         </action>
       </item>
     </menu>
