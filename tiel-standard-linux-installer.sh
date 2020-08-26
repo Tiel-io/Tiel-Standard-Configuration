@@ -88,6 +88,7 @@ find /usr/local/bin/ -type f -iname "*.sh" -exec sudo chmod +x {} \;
 ## Copy configuration files to the user's configuration directory.
 echo "* updating all user configurations"
 sudo cp -a ./.config/. ~/.config/
+sudo chmod +x ~/.config/polybar/forest/launch.sh
 sudo cp -a ./.ncmpcpp/config ~/.ncmpcpp/config
 
 ## Copy the provided iwd configuration file to where it belongs.
@@ -265,6 +266,11 @@ if [ "$first_time" = true ]; then
   sudo rm -rf ~/.config/plank/dock1/launchers/applications.dockitem
   sudo rm -rf ~/.config/plank/dock1/launchers/xfce-settings-manager.dockitem
   sudo rm -rf /etc/mpd.conf
+  sudo rm -rf ~/.config/polybar/beach
+  sudo rm -rf ~/.config/polybar/grid
+  sudo rm -rf ~/.config/polybar/manhattan
+  sudo rm -rf ~/.config/polybar/spark
+  sudo rm -rf ~/.config/polybar/wave
   exec plank &
   echo "--- Unwanted default files removed. ---"
   echo ""

@@ -2,17 +2,17 @@
 <openbox_menu xmlns="http://openbox.org/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://openbox.org/  file:///usr/share/openbox/menu.xsd">
   <menu id="root-menu" title="Menu" label="Openbox 3">
 <!--	<separator label="Main Menu"/>🎮⎈  -->
-		<item label="Terminal">
+		<item label="🖵 Terminal">
 			<action name="Execute">
 				<command>termite</command>
 			</action>
 		</item>
-		<item label="Firefox">
+		<item label="☲ Firefox">
 			<action name="Execute">
 				<command>firefox</command>
 			</action>
 		</item>
-    <item label="Bitwarden">
+    <item label="🛡 Bitwarden">
       <action name="Execute">
         <command>bitwarden-desktop</command>
       </action>
