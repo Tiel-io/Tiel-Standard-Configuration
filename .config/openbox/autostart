@@ -17,6 +17,15 @@ fi
 ## xfce4-settings daemon
 xfsettingsd &
 
+## TODO: genericize to 2+ monitors.
+## Automatically setup dual monitors if they exist.
+SCREEN_COUNT=$(xrandr --listmonitors | sed -n "1"p | awk '{print $NF}')
+if [ "$SCREEN_COUNT" -gt 1 ]; then
+  SCREEN_ONE=$(xrandr --listmonitors | sed -n "2"p | awk '{print $NF}')
+  SCREEN_TWO=$(xrandr --listmonitors | sed -n "3"p | awk '{print $NF}')
+  xrandr --output $SCREEN_TWO --auto --output $SCREEN_ONE --auto --right-of $SCREEN_TWO
+fi
+
 ## Start Compositing Manager
 exec compton -b &
 
@@ -24,7 +33,7 @@ exec compton -b &
 sh ~/.config/polybar/launch.sh
 
 ## Launch Plank
-exec autoplank.sh &
+sh autoplank.sh &
 
 ## Start Music Player Daemon
 exec mpd &

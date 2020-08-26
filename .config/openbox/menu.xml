@@ -2,17 +2,17 @@
 <openbox_menu xmlns="http://openbox.org/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://openbox.org/  file:///usr/share/openbox/menu.xsd">
   <menu id="root-menu" title="Menu" label="Openbox 3">
 <!--	<separator label="Main Menu"/>🎮⎈  -->
-		<item label="🖵 Terminal">
+		<item label="🖵&#8198;&#8198;&#8198;&#8198;Terminal">
 			<action name="Execute">
 				<command>termite</command>
 			</action>
 		</item>
-		<item label="☲ Firefox">
+		<item label="🕸&#8198;&#8198;&#8198;&#8198;Firefox">
 			<action name="Execute">
 				<command>firefox</command>
 			</action>
 		</item>
-    <item label="🛡 Bitwarden">
+    <item label="🛡&#8198;&#8198;&#8198;&#8198;&#8198;Bitwarden">
       <action name="Execute">
         <command>bitwarden-desktop</command>
       </action>
@@ -30,55 +30,55 @@
 		</item>
 		<separator/>
     <menu id="root-menu-srct" label="Shortcuts">
-      <item label="⚛️ Atom">
+      <item label="⚛️&#8198;&#8198;&#8198;&#8198;&#8198;&#8198;&#8198;Atom">
         <action name="Execute">
           <command>atom</command>
         </action>
       </item>
-      <item label="💻 GitKraken">
+      <item label="💻&#8198;&#8198;&#8198;&#8198;&#8198;&#8198;GitKraken">
         <action name="Execute">
           <execute>gitkraken</execute>
         </action>
       </item>
-      <item label="🌘 Insomnia">
+      <item label="🌘&#8198;&#8198;&#8198;&#8198;&#8198;&#8198;Insomnia">
         <action name="Execute">
           <execute>insomnia</execute>
         </action>
       </item>
       <separator/>
-      <item label="🐦 Discord">
+      <item label="🐦&#8198;&#8198;&#8198;&#8198;&#8198;&#8198;Discord">
         <action name="Execute">
           <execute>discord-canary</execute>
         </action>
       </item>
-      <item label="📻 Telegram">
+      <item label="📻&#8198;&#8198;&#8198;&#8198;&#8198;&#8198;Telegram">
         <action name="Execute">
           <execute>telegram-desktop</execute>
         </action>
       </item>
-      <item label="️🗫 Slack">
+      <item label="️🗫&#8198;&#8198;&#8198;&#8198;Slack">
         <action name="Execute">
           <execute>slack</execute>
         </action>
       </item>
-      <item label="🗩 Signal">
+      <item label="🗩&#8198;&#8198;&#8198;&#8198;&#8198;Signal">
         <action name="Execute">
           <execute>signal-desktop</execute>
         </action>
       </item>
       <separator/>
-      <item label="🖌️ GIMP">
+      <item label="🖌️&#8198;&#8198;&#8198;&#8198;&#8198;GIMP">
         <action name="Execute">
           <execute>gimp</execute>
         </action>
       </item>
       <separator/>
-      <item label="🎶 Music Player">
+      <item label="🎶🎶&#8198;&#8198;&#8198;&#8198;Music Player">
         <action name="Execute">
           <execute>termite -e ncmpcpp</execute>
         </action>
       </item>
-      <item label="🎬 VLC">
+      <item label="🎬&#8198;&#8198;&#8198;&#8198;&#8198;&#8198;VLC">
         <action name="Execute">
           <execute>vlc</execute>
         </action>
