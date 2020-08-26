@@ -33,7 +33,7 @@ exec compton -b &
 sh ~/.config/polybar/launch.sh
 
 ## Launch Plank
-sh autoplank.sh &
+/usr/local/bin/autoplank.sh &
 
 ## Start Music Player Daemon
 exec mpd &
