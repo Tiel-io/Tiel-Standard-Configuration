@@ -157,6 +157,8 @@ sudo pacman -S rcs --needed --noconfirm
 sudo pacman -S gramps --needed --noconfirm
 sudo pacman -S vlc --needed --noconfirm
 sudo pacman -S filezilla --needed --noconfirm
+sudo pacman -S rust --needed --noconfirm
+sudo pacman -S xdotool --needed --noconfirm
 yay -S bitwarden --noconfirm
 yay -S discord-canary --noconfirm
 yay -S slack-desktop --noconfirm
@@ -181,7 +183,9 @@ sudo chmod o=rw /var/lib/iwd/*
 
 ## Install ytmdl.
 sudo pip install wheel
-git clone https://github.com/deepjyoti30/ytmdl
+if [ "$first_time" = true ]; then
+  git clone https://github.com/deepjyoti30/ytmdl
+fi
 cd ytmdl
 git fetch --all
 git reset --hard origin/master
@@ -189,11 +193,25 @@ sudo python setup.py install
 cd ../
 
 ## Install howdoi.
-git clone https://github.com/gleitz/howdoi.git
+if [ "$first_time" = true ]; then
+  git clone https://github.com/gleitz/howdoi.git
+fi
 cd howdoi
 git fetch --all
 git reset --hard origin/master
 sudo python setup.py install
+cd ../
+
+## Install autoplank.
+if [ "$first_time" = true ]; then
+  git clone https://github.com/olback/autoplank.git
+fi
+cd autoplank
+git fetch --all
+git reset --hard origin/master
+cargo build --release
+cp ./target/release/autoplank /usr/local/bin/autoplank.sh
+sudo chmod +x /usr/local/bin/autoplank.sh
 cd ../
 
 ## Copy Atom's configuration settings.
