@@ -177,11 +177,11 @@ set-tiel-standard-config.sh RANDOMIZE_BOOT true
 sudo set-random-plymouth-theme.sh
 
 ## Remove potentially-stale Python dependencies.
-sudo pip uninstall wheel
-sudo pip uninstall requests
-sudo pip uninstall Pillow
-sudo pip uninstall screeninfo
-sudo pip uninstall pycountry
+sudo pip uninstall -y wheel
+sudo pip uninstall -y Pillow
+sudo pip uninstall -y screeninfo
+sudo pip uninstall -y pycountry
+sudo pip uninstall -y requests
 pip uninstall wheel
 pip uninstall requests
 pip uninstall Pillow
@@ -203,6 +203,7 @@ sudo chmod o=rw /var/lib/iwd
 sudo chmod o=rw /var/lib/iwd/*
 
 ## Install ytmdl.
+sudo pacman -S python-requests --needed --noconfirm
 sudo pacman -S python-wheel --needed --noconfirm
 if [ "$first_time" = true ]; then
   git clone https://github.com/deepjyoti30/ytmdl
@@ -240,7 +241,6 @@ sudo cp -a ./.atom/config.cson ~/.atom/config.cson
 
 ## Download some nice wallpaper images.
 echo "--- Downloading wallpapers. ---"
-sudo pacman -S python-requests --needed --noconfirm
 sudo pacman -S python-pillow --needed --noconfirm
 yay -S python-screeninfo --noconfirm
 sudo pacman -S python-pycountry --needed --noconfirm
@@ -323,6 +323,8 @@ sudo cp -a ./etc/systemd/system/. /etc/systemd/system/
 sudo systemctl disable --now random-plymouth-theme.service
 sudo systemctl enable --now random-plymouth-theme.service
 sudo systemctl enable --now ntpd.service
+sudo systemctl enable --now deluged.service
+sudo systemctl enable --now deluge-web.service
 
 ## Restart Openbox, and we're done!
 echo "--- Restarting Openbox to show changes. ---"
