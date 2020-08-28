@@ -171,6 +171,7 @@ yay -S zeal --noconfirm
 
 ## Blacklist the Nouveau driver to activate NVIDIA.
 sudo cp ./etc/mkinitcpio.conf /etc/mkinitcpio.conf
+sudo cp ./etc/modprobe.d/blacklist.conf /etc/modprobe.d/blacklist.conf
 sudo mkinitcpio -p linux
 
 ## Remove unwanted programs which might be present.
@@ -296,7 +297,8 @@ if [ "$first_time" = true ]; then
   sudo rm -rf ~/.config/polybar/spark
   sudo rm -rf ~/.config/polybar/wave
   sudo rm -rf /usr/local/bin/autoplank.sh
-  /usr/local/bin/autoplank.sh &
+  sudo rm -rf /etc/systemd/system/start-autoplank.service
+  /usr/local/bin/autoplank &
   echo "--- Unwanted default files removed. ---"
   echo ""
 fi
@@ -306,8 +308,6 @@ echo "* updating all custom services"
 sudo cp -a ./etc/systemd/system/. /etc/systemd/system/
 sudo systemctl disable --now random-plymouth-theme.service
 sudo systemctl enable --now random-plymouth-theme.service
-sudo systemctl disable --now start-autoplank.service
-sudo systemctl enable --now start-autoplank.service
 sudo systemctl enable --now ntpd.service
 
 ## Restart Openbox, and we're done!
