@@ -176,6 +176,18 @@ sudo cp ./etc/modprobe.d/blacklist.conf /etc/modprobe.d/blacklist.conf
 set-tiel-standard-config.sh RANDOMIZE_BOOT true
 sudo set-random-plymouth-theme.sh
 
+## Remove potentially-stale Python dependencies.
+sudo pip uninstall wheel
+sudo pip uninstall requests
+sudo pip uninstall Pillow
+sudo pip uninstall screeninfo
+sudo pip uninstall pycountry
+pip uninstall wheel
+pip uninstall requests
+pip uninstall Pillow
+pip uninstall screeninfo
+pip uninstall pycountry
+
 ## Remove unwanted programs which might be present.
 sudo pacman -Rns midori --noconfirm
 sudo pacman -Rns geany --noconfirm
@@ -230,7 +242,7 @@ sudo cp -a ./.atom/config.cson ~/.atom/config.cson
 echo "--- Downloading wallpapers. ---"
 sudo pacman -S python-requests --needed --noconfirm
 sudo pacman -S python-pillow --needed --noconfirm
-pip install screeninfo
+yay -S python-screeninfo --noconfirm
 sudo pacman -S python-pycountry --needed --noconfirm
 get-wallpapers.sh
 echo "--- Downloaded wallpapers. ---"
