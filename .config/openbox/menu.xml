@@ -178,7 +178,7 @@
 						<command>ob-powermenu.sh --suspent</command>
 					</action>
 				</item>
-				<item label="Reboot">
+				<item label="Reboop">
 					<action name="Execute">
 						<command>ob-powermenu.sh --reboot</command>
 					</action>
