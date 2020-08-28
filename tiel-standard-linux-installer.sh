@@ -172,7 +172,6 @@ yay -S zeal --noconfirm
 ## Blacklist the Nouveau driver to activate NVIDIA.
 sudo cp ./etc/mkinitcpio.conf /etc/mkinitcpio.conf
 sudo cp ./etc/modprobe.d/blacklist.conf /etc/modprobe.d/blacklist.conf
-sudo cp ./etc/X11/xorg.conf.d/10-monitor.conf /etc/X11/xorg.conf.d/10-monitor.conf
 sudo mkinitcpio -p linux
 
 ## Remove unwanted programs which might be present.
