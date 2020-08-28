@@ -312,10 +312,12 @@ if [ "$first_time" = true ]; then
   sudo rm -rf ~/.config/polybar/wave
   sudo rm -rf /usr/local/bin/autoplank.sh
   sudo rm -rf /etc/systemd/system/start-autoplank.service
-  /usr/local/bin/autoplank &
   echo "--- Unwanted default files removed. ---"
   echo ""
 fi
+
+## Start/restart autoplank.
+/usr/local/bin/autoplank &
 
 ## Update, disable, and reactivate services.
 echo "* updating all custom services"
