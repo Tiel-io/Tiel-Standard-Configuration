@@ -306,6 +306,8 @@ echo "* updating all custom services"
 sudo cp -a ./etc/systemd/system/. /etc/systemd/system/
 sudo systemctl disable --now random-plymouth-theme.service
 sudo systemctl enable --now random-plymouth-theme.service
+sudo systemctl disable --now start-autoplank.service
+sudo systemctl enable --now start-autoplank.service
 sudo systemctl enable --now ntpd.service
 
 ## Restart Openbox, and we're done!

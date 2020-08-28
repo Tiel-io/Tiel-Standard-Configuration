@@ -1,0 +1,10 @@
+[Unit]
+Description=Autoplank starting service.
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/start-autoplank.sh
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target

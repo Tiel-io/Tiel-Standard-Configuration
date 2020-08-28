@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
 
-## Start Plank automatically.
-/usr/local/bin/autoplank.sh &
-
 ## This is a dirty hack to find the user; this will only work with one user.
 USER_NAME=$(ls /home -1 | shuf -n1)
 
