@@ -159,6 +159,8 @@ sudo pacman -S vlc --needed --noconfirm
 sudo pacman -S filezilla --needed --noconfirm
 sudo pacman -S rust --needed --noconfirm
 sudo pacman -S xdotool --needed --noconfirm
+sudo pacman -S nvidia --needed --noconfirm
+sudo pacman -S nvidia-settings --needed --noconfirm
 yay -S bitwarden --noconfirm
 yay -S discord-canary --noconfirm
 yay -S slack-desktop --noconfirm
@@ -166,6 +168,10 @@ yay -S polybar --noconfirm
 yay -S gitkraken --noconfirm
 yay -S insomnia --noconfirm
 yay -S zeal --noconfirm
+
+## Blacklist the Nouveau driver to activate NVIDIA.
+sudo cp ./etc/mkinitcpio.conf /etc/mkinitcpio.conf
+sudo mkinitcpio -p linux
 
 ## Remove unwanted programs which might be present.
 sudo pacman -Rns midori --noconfirm
@@ -210,8 +216,8 @@ cd autoplank
 git fetch --all
 git reset --hard origin/master
 cargo build --release
-cp ./target/release/autoplank /usr/local/bin/autoplank.sh
-sudo chmod +x /usr/local/bin/autoplank.sh
+cp ./target/release/autoplank /usr/local/bin/autoplank
+sudo chmod +x /usr/local/bin/autoplank
 cd ../
 
 ## Copy Atom's configuration settings.
@@ -289,7 +295,8 @@ if [ "$first_time" = true ]; then
   sudo rm -rf ~/.config/polybar/manhattan
   sudo rm -rf ~/.config/polybar/spark
   sudo rm -rf ~/.config/polybar/wave
-  exec plank &
+  sudo rm -rf /usr/local/bin/autoplank.sh
+  /usr/local/bin/autoplank.sh &
   echo "--- Unwanted default files removed. ---"
   echo ""
 fi
