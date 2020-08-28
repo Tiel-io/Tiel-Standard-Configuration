@@ -34,8 +34,11 @@ menuStart
     menuItem "Toggle Random Wallpaper: $DESKTOP_DESCRIPTION" "set-tiel-standard-config.sh RANDOMIZE_DESKTOP $DESKTOP_TOGGLE"
     menuItem "Toggle Random Boot Theme: $BOOT_DESCRIPTION" "set-tiel-standard-config.sh RANDOMIZE_BOOT $BOOT_TOGGLE"
     menuSeparator
-    menuItem "Power Settings" "xfce4-power-manager-settings"
+    menuItem "GPU Settings" "nvidia-settings"
+    menuItem "Change Refresh Rate" "set-refresh-rate.sh"
+    menuSeparator
     menuItem "Audio Settings" "pavucontrol"
+    menuItem "Power Settings" "xfce4-power-manager-settings"
     menuItem "Other Settings" "xfce4-settings-manager"
     menuSeparator
     echo '<menu execute="ob-kb-pipemenu.sh" id="keybinds" label="Keybindings"/>'

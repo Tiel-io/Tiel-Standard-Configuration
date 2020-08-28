@@ -161,6 +161,7 @@ sudo pacman -S rust --needed --noconfirm
 sudo pacman -S xdotool --needed --noconfirm
 sudo pacman -S nvidia --needed --noconfirm
 sudo pacman -S nvidia-settings --needed --noconfirm
+sudo pacman -S deluge --needed --noconfirm
 yay -S bitwarden --noconfirm
 yay -S discord-canary --noconfirm
 yay -S slack-desktop --noconfirm
@@ -190,7 +191,7 @@ sudo chmod o=rw /var/lib/iwd
 sudo chmod o=rw /var/lib/iwd/*
 
 ## Install ytmdl.
-sudo pip install wheel
+sudo pacman -S python-wheel --needed --noconfirm
 if [ "$first_time" = true ]; then
   git clone https://github.com/deepjyoti30/ytmdl
 fi
@@ -227,10 +228,10 @@ sudo cp -a ./.atom/config.cson ~/.atom/config.cson
 
 ## Download some nice wallpaper images.
 echo "--- Downloading wallpapers. ---"
-pip install requests
-pip install Pillow
+sudo pacman -S python-requests --needed --noconfirm
+sudo pacman -S python-pillow --needed --noconfirm
 pip install screeninfo
-pip install pycountry
+sudo pacman -S python-pycountry --needed --noconfirm
 get-wallpapers.sh
 echo "--- Downloaded wallpapers. ---"
 echo ""

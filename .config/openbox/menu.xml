@@ -108,26 +108,11 @@
       </item>
     </menu>
 		<menu id="root-menu-8397" label="Run Using Root">
-			<item label="Termite">
-				<action name="Execute">
-					<execute>app-as-root.sh termite</execute>
-				</action>
-			</item>
-      <item label="Atom">
+      <item label="⚛️&#8198;&#8198;&#8198;&#8198;&#8198;&#8198;&#8198;Atom ⚠️">
         <action name="Execute">
           <execute>app-as-root.sh atom</execute>
         </action>
       </item>
-			<item label="Thunar">
-				<action name="Execute">
-					<execute>app-as-root.sh 'dbus-run-session thunar'</execute>
-				</action>
-			</item>
-			<item label="Ranger">
-				<action name="Execute">
-					<execute>app-as-root.sh 'termite -e ranger'</execute>
-				</action>
-			</item>
 		</menu>
     <menu id="root-menu-8365" label="Screenshot">
       <item label="Area">
