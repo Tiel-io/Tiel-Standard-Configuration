@@ -169,10 +169,11 @@ yay -S gitkraken --noconfirm
 yay -S insomnia --noconfirm
 yay -S zeal --noconfirm
 
-## Blacklist the Nouveau driver to activate NVIDIA.
+## Blacklist the Nouveau driver and rebuild activate NVIDIA.
 sudo cp ./etc/mkinitcpio.conf /etc/mkinitcpio.conf
 sudo cp ./etc/modprobe.d/blacklist.conf /etc/modprobe.d/blacklist.conf
-sudo mkinitcpio -p linux
+set-tiel-standard-config.sh RANDOMIZE_BOOT true
+sudo set-random-plymouth-theme.sh
 
 ## Remove unwanted programs which might be present.
 sudo pacman -Rns midori --noconfirm
