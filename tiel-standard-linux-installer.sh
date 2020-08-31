@@ -170,10 +170,13 @@ yay -S gitkraken --noconfirm
 yay -S insomnia --noconfirm
 yay -S zeal --noconfirm
 
-## Blacklist the Nouveau driver and rebuild activate NVIDIA.
+## Blacklist the Nouveau driver and rebuild kernel to activate NVIDIA.
 sudo cp ./etc/mkinitcpio.conf /etc/mkinitcpio.conf
+sudo cp ./etc/default/grub /etc/default/grub
 sudo cp ./etc/modprobe.d/blacklist.conf /etc/modprobe.d/blacklist.conf
+sudo cp ./etc/pacman.d/hooks/nvidia.hook /etc/pacman.d/hooks/nvidia.hook
 set-tiel-standard-config.sh RANDOMIZE_BOOT true
+sudo grub-mkconfig -o /boot/grub/grub.cfg
 sudo set-random-plymouth-theme.sh
 
 ## Remove potentially-stale Python dependencies.
