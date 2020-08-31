@@ -114,7 +114,18 @@
         </action>
       </item>
 		</menu>
-    <menu id="root-menu-8365" label="Screenshot">
+    <menu id="root-menu-8365" label="Screencap">
+      <item label="Peek">
+        <action name="Execute">
+          <execute>peek</execute>
+        </action>
+      </item>
+      <item label="OBS">
+        <action name="Execute">
+          <execute>obs</execute>
+        </action>
+      </item>
+      <separator/>
       <item label="Area">
         <action name="Execute">
           <execute>shot-area.sh</execute>
@@ -143,8 +154,11 @@
       </item>
     </menu>
 		<separator/>
-		<menu execute="ob-places-pipemenu.sh --recent ~/" id="pipe-placesmenu" label="Home Folder"/>
-		<menu execute="ob-recent-files-pipemenu.sh" id="pipe-164328" label="Recent Files"/>
+    <item label="Search">
+      <action name="Execute">
+        <execute>angrysearch</execute>
+      </action>
+    </item>
 		<separator/>
     <menu execute="ob-preferences-pipemenu.sh" id="pipe-preferences" label="Preferences"/>
 		<item label="Lock Screen">

@@ -1,0 +1,8 @@
+[Unit]
+Description=Scheduled indexing of the filesystem.
+
+[Timer]
+OnCalendar=*:0/1
+
+[Install]
+WantedBy=multi-user.target

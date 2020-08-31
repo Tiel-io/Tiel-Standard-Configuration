@@ -162,6 +162,8 @@ sudo pacman -S xdotool --needed --noconfirm
 sudo pacman -S nvidia --needed --noconfirm
 sudo pacman -S nvidia-settings --needed --noconfirm
 sudo pacman -S deluge --needed --noconfirm
+sudo pacman -S peek --needed --noconfirm
+sudo pacman -S obs-studio --needed --noconfirm
 yay -S bitwarden --noconfirm
 yay -S discord-canary --noconfirm
 yay -S slack-desktop --noconfirm
@@ -169,6 +171,7 @@ yay -S polybar --noconfirm
 yay -S gitkraken --noconfirm
 yay -S insomnia --noconfirm
 yay -S zeal --noconfirm
+yay -S angrysearch --noconfirm
 
 ## Blacklist the Nouveau driver and rebuild kernel to activate NVIDIA.
 sudo cp ./etc/mkinitcpio.conf /etc/mkinitcpio.conf
@@ -327,6 +330,8 @@ echo "* updating all custom services"
 sudo cp -a ./etc/systemd/system/. /etc/systemd/system/
 sudo systemctl disable --now random-plymouth-theme.service
 sudo systemctl enable --now random-plymouth-theme.service
+sudo systemctl disable --now search-indexer.timer
+sudo systemctl enable --now search-indexer.timer
 sudo systemctl enable --now ntpd.service
 sudo systemctl enable --now deluged.service
 sudo systemctl enable --now deluge-web.service

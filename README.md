@@ -13,6 +13,8 @@ sudo rm ~/.tiel-standard/tiel-standard-linux-installer.sh
 ```
 The script downloads the files it needs to perform its job to the `~/.tiel-standard/` directory. If this directory does not exist, the script assumes that it is performing a full first-time setup. If the directory _does_ exist, you can still force the application to act as if it were performing its first-time setup by passing a `true` parameter, `./tiel-standard-linux-installer.sh true`.
 
+Due to as-yet-unresolved issues, initial installation may require running the script multiple times between reboots before everything is fully configured as expected.
+
 ## Special Thanks
 Special thanks is owed to the following organizations and people, without whose work this standard configuration would not be possible.
 - [Arch Linux](https://www.archlinux.org/), a lightweight and flexible Linux distribution with an active and supportive community.

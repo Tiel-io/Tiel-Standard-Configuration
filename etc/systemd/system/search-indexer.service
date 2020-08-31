@@ -1,0 +1,6 @@
+[Unit]
+Description=Scheduled indexing of the filesystem.
+
+[Service]
+Type=simple
+ExecStart=/usr/share/angrysearch/angrysearch_update_database.py
