@@ -76,7 +76,7 @@
           <execute>lutris</execute>
         </action>
       </item>
-      <item label="⎈&#8198;&#8198;&#8198;&#8198;&#8198;Steam">
+      <item label="🎮&#8198;&#8198;&#8198;&#8198;&#8198;Steam">
         <action name="Execute">
           <execute>steam</execute>
         </action>

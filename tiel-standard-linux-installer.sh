@@ -328,9 +328,6 @@ if [ "$first_time" = true ]; then
   echo ""
 fi
 
-## Start/restart autoplank.
-/usr/local/bin/autoplank &
-
 ## Update, disable, and reactivate services.
 echo "* updating all custom services"
 sudo cp -a ./etc/systemd/system/. /etc/systemd/system/
@@ -346,3 +343,6 @@ sudo systemctl enable --now deluge-web.service
 echo "--- Restarting Openbox to show changes. ---"
 openbox --restart
 echo "--- All done! Congratulations on the Tiel Standard. ---"
+
+## Start/restart autoplank.
+/usr/local/bin/autoplank &
