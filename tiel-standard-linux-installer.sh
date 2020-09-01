@@ -164,6 +164,9 @@ sudo pacman -S nvidia-settings --needed --noconfirm
 sudo pacman -S deluge --needed --noconfirm
 sudo pacman -S peek --needed --noconfirm
 sudo pacman -S obs-studio --needed --noconfirm
+sudo pacman -S thunderbird --needed --noconfirm
+sudo pacman -S lib32-mesa vulkan-intel lib32-vulkan-intel vulkan-icd-loader lib32-vulkan-icd-loader --needed --noconfirm
+sudo pacman -S lutris --needed --noconfirm
 yay -S bitwarden --noconfirm
 yay -S discord-canary --noconfirm
 yay -S slack-desktop --noconfirm
@@ -172,6 +175,9 @@ yay -S gitkraken --noconfirm
 yay -S insomnia --noconfirm
 yay -S zeal --noconfirm
 yay -S angrysearch --noconfirm
+yay -S trelby-git --noconfirm
+yay -S lib32-nvidia-utils --noconfirm
+sudo pacman -S steam --needed --noconfirm
 
 ## Blacklist the Nouveau driver and rebuild kernel to activate NVIDIA.
 sudo cp ./etc/mkinitcpio.conf /etc/mkinitcpio.conf

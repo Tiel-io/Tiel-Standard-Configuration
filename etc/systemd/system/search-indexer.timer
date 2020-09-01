@@ -2,7 +2,7 @@
 Description=Scheduled indexing of the filesystem.
 
 [Timer]
-OnCalendar=*:0/1
+OnCalendar=*:0/15
 
 [Install]
 WantedBy=multi-user.target

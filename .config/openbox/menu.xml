@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openbox_menu xmlns="http://openbox.org/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://openbox.org/  file:///usr/share/openbox/menu.xsd">
   <menu id="root-menu" title="Menu" label="Openbox 3">
-<!--	<separator label="Main Menu"/>🎮⎈  -->
 		<item label="🖵&#8198;&#8198;&#8198;&#8198;Terminal">
 			<action name="Execute">
 				<command>termite</command>
@@ -46,6 +45,11 @@
         </action>
       </item>
       <separator/>
+      <item label="✉️&#8198;&#8198;&#8198;&#8198;&#8198;&#8198;Email">
+        <action name="Execute">
+          <execute>thunderbird</execute>
+        </action>
+      </item>
       <item label="🐦&#8198;&#8198;&#8198;&#8198;&#8198;&#8198;Discord">
         <action name="Execute">
           <execute>discord-canary</execute>
@@ -67,6 +71,17 @@
         </action>
       </item>
       <separator/>
+      <item label="🎮&#8198;&#8198;&#8198;&#8198;&#8198;Lutris">
+        <action name="Execute">
+          <execute>lutris</execute>
+        </action>
+      </item>
+      <item label="⎈&#8198;&#8198;&#8198;&#8198;&#8198;Steam">
+        <action name="Execute">
+          <execute>steam</execute>
+        </action>
+      </item>
+      <separator/>
       <item label="🖌️&#8198;&#8198;&#8198;&#8198;&#8198;GIMP">
         <action name="Execute">
           <execute>gimp</execute>
@@ -81,29 +96,6 @@
       <item label="🎬&#8198;&#8198;&#8198;&#8198;&#8198;&#8198;VLC">
         <action name="Execute">
           <execute>vlc</execute>
-        </action>
-      </item>
-    </menu>
-    <menu id="root-menu-8399" label="Quick Links">
-      <item label="Google">
-        <action name="Execute">
-          <execute>firefox -new-tab "https://www.google.com"</execute>
-        </action>
-      </item>
-      <item label="GitHub">
-        <action name="Execute">
-          <execute>firefox -new-tab "https://www.github.com"</execute>
-        </action>
-      </item>
-      <item label="YouTube">
-        <action name="Execute">
-          <execute>firefox -new-tab "https://www.youtube.com"</execute>
-        </action>
-      </item>
-      <separator/>
-      <item label="Tiel">
-        <action name="Execute">
-          <execute>firefox -new-tab "https://www.tiel.io"</execute>
         </action>
       </item>
     </menu>
