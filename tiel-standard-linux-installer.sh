@@ -198,7 +198,9 @@ pip uninstall wheel
 pip uninstall requests
 pip uninstall Pillow
 pip uninstall screeninfo
-pip uninstall pycountry
+
+## Install Python dependencies which must use pip.
+pip install pycountry
 
 ## Remove unwanted programs which might be present.
 sudo pacman -Rns midori --noconfirm
@@ -217,9 +219,8 @@ sudo chmod o=rw /var/lib/iwd/*
 ## Install ytmdl.
 sudo pacman -S python-requests --needed --noconfirm
 sudo pacman -S python-wheel --needed --noconfirm
-if [ "$first_time" = true ]; then
-  git clone https://github.com/deepjyoti30/ytmdl
-fi
+sudo rm -rf ytmdl
+git clone https://github.com/TimTinkers/ytmdl
 cd ytmdl
 git fetch --all
 git reset --hard origin/master
