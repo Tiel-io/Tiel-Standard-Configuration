@@ -90,6 +90,8 @@ echo "* updating all user configurations"
 sudo cp -a ./.config/. ~/.config/
 sudo chmod +x ~/.config/polybar/forest/launch.sh
 sudo cp -a ./.ncmpcpp/config ~/.ncmpcpp/config
+sudo cp -a ./home/. ~/
+source ~/.zshrc
 
 ## Copy the provided iwd configuration file to where it belongs.
 echo "* updating iwd main.conf file with network configuration settings"
@@ -140,6 +142,7 @@ sudo pacman -S pavucontrol --needed --noconfirm
 sudo pacman -S python-pip --needed --noconfirm
 sudo pacman -S firefox --needed --noconfirm
 sudo pacman -S atom --needed --noconfirm
+sudo pacman -S apm --noconfirm
 sudo pacman -S gimp --needed --noconfirm
 sudo pacman -S audacity --needed --noconfirm
 sudo pacman -S telegram-desktop --needed --noconfirm
@@ -260,6 +263,14 @@ sudo pacman -S python-pycountry --needed --noconfirm
 get-wallpapers.sh
 echo "--- Downloaded wallpapers. ---"
 echo ""
+
+## Install Solidity development tools.
+## TODO: get nvm working.
+sudo pacman -S node-gyp --needed --noconfirm
+wget -O- https://raw.githubusercontent.com/glenpike/npm-g_nosudo/master/npm-g-nosudo.sh | sh
+npm install -g truffle
+yay -S ganache-bin --noconfirm
+yay -S ganache-cli --noconfirm
 
 ## Download and install the Fira Code fonts on our first execution.
 if [ "$first_time" = true ]; then
