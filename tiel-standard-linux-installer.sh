@@ -133,7 +133,7 @@ yay -Syu --devel --timeupdate --noconfirm
 
 ## Install or update standard programs if needed.
 sudo pacman -S base-devel --needed --noconfirm
-sudo pacman -S asar --needed --noconfirm
+sudo pacman -S asar --noconfirm
 sudo pacman -S pacman-contrib --needed --noconfirm
 sudo pacman -S iwd --needed --noconfirm
 sudo pacman -S ntp --needed --noconfirm
@@ -170,6 +170,7 @@ sudo pacman -S obs-studio --needed --noconfirm
 sudo pacman -S thunderbird --needed --noconfirm
 sudo pacman -S lib32-mesa vulkan-intel lib32-vulkan-intel vulkan-icd-loader lib32-vulkan-icd-loader --needed --noconfirm
 sudo pacman -S lutris --needed --noconfirm
+sudo pacman -S cups --needed --noconfirm
 yay -S bitwarden --noconfirm
 yay -S discord-canary --noconfirm
 yay -S slack-desktop --noconfirm
@@ -180,6 +181,7 @@ yay -S zeal --noconfirm
 yay -S angrysearch --noconfirm
 yay -S trelby-git --noconfirm
 yay -S lib32-nvidia-utils --noconfirm
+yay -S brother-hll2350dw --noconfirm
 sudo pacman -S steam --needed --noconfirm
 
 ## Blacklist the Nouveau driver and rebuild kernel to activate NVIDIA.
@@ -350,6 +352,7 @@ sudo systemctl enable --now search-indexer.timer
 sudo systemctl enable --now ntpd.service
 sudo systemctl enable --now deluged.service
 sudo systemctl enable --now deluge-web.service
+sudo systemctl enable --now org.cups.cupsd.service
 
 ## Restart Openbox, and we're done!
 echo "--- Restarting Openbox to show changes. ---"

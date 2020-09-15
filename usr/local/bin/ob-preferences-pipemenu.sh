@@ -38,7 +38,7 @@ menuStart
     menuItem "Change Refresh Rate" "set-refresh-rate.sh"
     menuSeparator
     menuItem "Audio Settings" "pavucontrol"
-    menuItem "Power Settings" "xfce4-power-manager-settings"
+    menuItem "Printer Settings" "firefox -new-tab 'localhost:631/admin'"
     menuItem "Other Settings" "xfce4-settings-manager"
     menuSeparator
     echo '<menu execute="ob-kb-pipemenu.sh" id="keybinds" label="Keybindings"/>'
