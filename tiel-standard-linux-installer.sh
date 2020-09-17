@@ -75,12 +75,20 @@ cd Curated-Plymouth-Themes
 git fetch --all
 git reset --hard origin/master
 cd ../
+if [ "$first_time" = true ]; then
+  git clone https://github.com/TimTinkers/Bib.git
+fi
+cd Bib
+git fetch --all
+git reset --hard origin/master
+cd ../
 
 ## Move scripts to the user's bin for easy execution, and make them executable.
 echo "* updating all user scripts"
 sudo cp ./Curated-Plymouth-Themes/rofi-select-theme.sh /usr/local/bin/rofi-select-theme.sh
 sudo cp ./rofi-iwd-menu/rofi-wifi-menu.sh /usr/local/bin/rofi-wifi-menu.sh
 sudo cp ./Reddit-Wallpaper-Downloader/get-wallpapers.sh /usr/local/bin/get-wallpapers.sh
+sudo cp ./Bib/bib /usr/local/bib/bib
 sudo cp -a ./Reddit-Wallpaper-Downloader/wallpaper-downloader/. /usr/local/bin/wallpaper-downloader/
 sudo cp -a ./usr/local/bin/. /usr/local/bin/
 find /usr/local/bin/ -type f -iname "*.sh" -exec sudo chmod +x {} \;
@@ -171,6 +179,7 @@ sudo pacman -S thunderbird --needed --noconfirm
 sudo pacman -S lib32-mesa vulkan-intel lib32-vulkan-intel vulkan-icd-loader lib32-vulkan-icd-loader --needed --noconfirm
 sudo pacman -S lutris --needed --noconfirm
 sudo pacman -S cups --needed --noconfirm
+sudo pacman -S sshpass --needed --noconfirm
 yay -S bitwarden --noconfirm
 yay -S discord-canary --noconfirm
 yay -S slack-desktop --noconfirm
@@ -206,6 +215,8 @@ pip uninstall screeninfo
 
 ## Install Python dependencies which must use pip.
 pip install pycountry
+pip install pydes
+pip install bs4
 
 ## Remove unwanted programs which might be present.
 sudo pacman -Rns midori --noconfirm
