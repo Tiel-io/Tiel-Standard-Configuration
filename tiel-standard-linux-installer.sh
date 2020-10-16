@@ -191,6 +191,8 @@ yay -S angrysearch --noconfirm
 yay -S trelby-git --noconfirm
 yay -S lib32-nvidia-utils --noconfirm
 yay -S brother-hll2350dw --noconfirm
+yay -S unityhub --noconfirm
+yay -S grub-customizer --noconfirm
 sudo pacman -S steam --needed --noconfirm
 
 ## Blacklist the Nouveau driver and rebuild kernel to activate NVIDIA.
