@@ -115,5 +115,6 @@ alias ga='git add'
 alias gc='git commit -m'
 alias gp='git push origin master'
 
-# truffle
-alias truffle='~/.npm-packages/bin/truffle'
+# Add globally-installed npm modules to PATH.
+NPM_PACKAGES="${HOME}/.npm-packages"
+export PATH="$PATH:$NPM_PACKAGES/bin"

@@ -283,9 +283,7 @@ echo ""
 ## TODO: get nvm working.
 sudo pacman -S node-gyp --needed --noconfirm
 wget -O- https://raw.githubusercontent.com/glenpike/npm-g_nosudo/master/npm-g-nosudo.sh | sh
-npm install -g truffle
-yay -S ganache-bin --noconfirm
-yay -S ganache-cli --noconfirm
+## TODO: install Hardhat and Ethers.
 
 ## Download and install the Fira Code fonts on our first execution.
 if [ "$first_time" = true ]; then
