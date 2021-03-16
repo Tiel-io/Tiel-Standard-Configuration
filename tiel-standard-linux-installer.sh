@@ -193,7 +193,9 @@ yay -S lib32-nvidia-utils --noconfirm
 yay -S brother-hll2350dw --noconfirm
 yay -S unityhub --noconfirm
 yay -S grub-customizer --noconfirm
+yay -S shadowfox-updater --noconfirm
 sudo pacman -S steam --needed --noconfirm
+sudo pacman -S aws-cli --needed --noconfirm
 
 ## Blacklist the Nouveau driver and rebuild kernel to activate NVIDIA.
 sudo cp ./etc/mkinitcpio.conf /etc/mkinitcpio.conf
@@ -284,6 +286,10 @@ echo ""
 sudo pacman -S node-gyp --needed --noconfirm
 wget -O- https://raw.githubusercontent.com/glenpike/npm-g_nosudo/master/npm-g-nosudo.sh | sh
 ## TODO: install Hardhat and Ethers.
+
+## TODO: install full Serverless setup.
+
+## TODO: configure Atom.
 
 ## Download and install the Fira Code fonts on our first execution.
 if [ "$first_time" = true ]; then
