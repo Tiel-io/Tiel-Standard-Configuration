@@ -1,0 +1,16 @@
+# Unison settings.
+root=/home/tim
+root=ssh://tim@rockhopper.us//home/tim/Unison-Storage
+auto=true
+batch=true
+fastcheck=true
+prefer=newer
+silent=true
+times=true
+
+# Files to synchronize.
+path=a.txt
+path=.thunderbird/s5eblguo.default-release/ImapMail/imap.gmail.com/msgFilterRules.dat
+path=.thunderbird/s5eblguo.default-release/ImapMail/imap.gmail-1.com/msgFilterRules.dat
+path=.thunderbird/s5eblguo.default-release/ImapMail/imap.gmail-2.com/msgFilterRules.dat
+path=.thunderbird/s5eblguo.default-release/Mail/Local Folders/msgFilterRules.dat

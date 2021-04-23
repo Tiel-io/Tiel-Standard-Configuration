@@ -41,6 +41,7 @@ if [ ! -d "${TIEL_CONFIG}" ]; then
   touch "$TIEL_CONFIG/main.conf"
   echo "RANDOMIZE_DESKTOP=true" >> "$TIEL_CONFIG/main.conf"
   echo "RANDOMIZE_BOOT=true" >> "$TIEL_CONFIG/main.conf"
+  echo "PERIODIC_SYNC=false" >> "$TIEL_CONFIG/main.conf"
 else
   echo "* found existing Tiel Standard configuration directory: $TIEL_CONFIG"
 fi
@@ -232,11 +233,17 @@ sudo pacman -Rns wpa_supplicant --noconfirm
 sudo pacman -Rns netctl --noconfirm
 sudo pacman -RnS dhcpcd --noconfirm
 
+## Perform Unison setup.
+if [ "$first_time" = true ]; then
+  setup-unison.sh
+fi
+
 ## Prepare our iwd directory for our Rofi management script to run later.
 sudo chmod o=rw /var/lib/iwd
 sudo chmod o=rw /var/lib/iwd/*
 
 ## Install ytmdl.
+cd "${tiel_dir}"
 sudo pacman -S python-requests --needed --noconfirm
 sudo pacman -S python-wheel --needed --noconfirm
 sudo rm -rf ytmdl
@@ -370,6 +377,7 @@ sudo systemctl enable --now ntpd.service
 sudo systemctl enable --now deluged.service
 sudo systemctl enable --now deluge-web.service
 sudo systemctl enable --now org.cups.cupsd.service
+sudo systemctl enable --now cups
 
 ## Restart Openbox, and we're done!
 echo "--- Restarting Openbox to show changes. ---"

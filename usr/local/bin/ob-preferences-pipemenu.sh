@@ -24,10 +24,21 @@ if [ "$RANDOMIZE_BOOT" = true ]; then
   BOOT_TOGGLE="false"
 fi
 
+## Determine Unison periodic sync settings.
+PERIODIC_SYNC_DESCRIPTION="On"
+PERIODIC_SYNC_TOGGLE="true"
+if [ "$PERIODIC_SYNC" = true ]; then
+  PERIODIC_SYNC_DESCRIPTION="Off"
+  PERIODIC_SYNC_TOGGLE="false"
+fi
+
 ## Display the menu.
 menuStart
     echo '<item label="Refresh Openbox"><action name="Restart"/></item>'
     menuItem "Update Tiel Standard" "termite -e ~/.tiel-standard/Tiel-Standard-Configuration/tiel-standard-bootstrapper.sh"
+    menuSeparator
+    menuItem "Sync Unison" "sync-unison.sh"
+    menuItem "Toggle Periodic Sync: $PERIODIC_SYNC_DESCRIPTION" "toggle-periodic-sync-unison.sh $PERIODIC_SYNC_TOGGLE"
     menuSeparator
     menuItem "Change Wallpaper" "nitrogen-wallpaper-selector.sh"
     menuItem "Change Boot Theme" "rofi-select-theme.sh"

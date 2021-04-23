@@ -50,3 +50,6 @@ ksuperkey -e 'Super_R=Alt_L|F1' &
 
 ## Enable power management
 xfce4-power-manager &
+
+## Synchronize with Unison.
+sync-unison.sh &
