@@ -92,6 +92,7 @@ sudo cp ./Reddit-Wallpaper-Downloader/get-wallpapers.sh /usr/local/bin/get-wallp
 sudo cp ./Bib/bib /usr/local/bib/bib
 sudo cp -a ./Reddit-Wallpaper-Downloader/wallpaper-downloader/. /usr/local/bin/wallpaper-downloader/
 sudo cp -a ./usr/local/bin/. /usr/local/bin/
+sudo cp -a ./usr/lib/. /usr/lib/
 find /usr/local/bin/ -type f -iname "*.sh" -exec sudo chmod +x {} \;
 
 ## Copy configuration files to the user's configuration directory.
