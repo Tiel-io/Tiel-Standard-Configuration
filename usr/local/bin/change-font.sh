@@ -10,7 +10,7 @@
 # Dir
 pdir="$HOME/.config/polybar"
 rdir="$HOME/.config/rofi"
-tdir="$HOME/.config/termite"
+tdir="$HOME/.config/alacritty"
 odir="$HOME/.config/openbox"
 ddir="$HOME/.config/dunst"
 
@@ -50,7 +50,7 @@ font_rofi () {
 font_term () {
 	if [[ "$FONT" ]]; then
 		sed -i -e "s/font = .*/font = $FNAME $FSTYLE $FSIZE/g" $tdir/config
-		killall -USR1 termite
+		killall -USR1 alacritty
 	else
 		exit 0
 	fi
@@ -153,7 +153,7 @@ else
         menuSeparator
         menuItem 'Polybar' "$0 --bar"
         menuItem 'Rofi' "$0 --rofi"
-        menuItem 'Termite' "$0 --terminal"
+        menuItem 'Alacritty' "$0 --terminal"
         menuItem 'Openbox' "$0 --openbox"
         menuItem 'Dunst' "$0 --dunst"
         menuItem 'GTK' "$0 --gtk"

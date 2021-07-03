@@ -45,7 +45,7 @@ if [[ $1 = '--rcedit' ]]; then
     if hash exo-open &>/dev/null; then
         exo-open "$RCPATH"
     else
-        termite -e "$EDITOR $RCPATH"
+        alacritty -e "$EDITOR $RCPATH"
     fi
     exit 0
 fi

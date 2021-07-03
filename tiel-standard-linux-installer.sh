@@ -225,7 +225,11 @@ pip install pydes
 pip install bs4
 
 ## Remove unwanted programs which might be present.
+sudo pacman -Rns termite --noconfirm
+sudo pacman -Rns archcraft-about --noconfirm
+sudo pacman -Rns archcraft-startapp --noconfirm
 sudo pacman -Rns midori --noconfirm
+sudo pacman -Rns geany-plugins --noconfirm
 sudo pacman -Rns geany --noconfirm
 sudo pacman -Rns networkmanager-dmenu-git --noconfirm
 sudo pacman -Rns networkmanager --noconfirm
@@ -283,6 +287,7 @@ sudo cp -a ./.atom/config.cson ~/.atom/config.cson
 ## Download some nice wallpaper images.
 echo "--- Downloading wallpapers. ---"
 sudo pacman -S python-pillow --needed --noconfirm
+pip install pillow
 yay -S python-screeninfo --noconfirm
 sudo pacman -S python-pycountry --needed --noconfirm
 get-wallpapers.sh

@@ -9,8 +9,8 @@
 # <menu id="places" label="Places" execute="/path/to/al-places-pipemenu --recent ~/" />
 # make sure you have al-recent-files-pipemenu, and enter its path below.
 
-readonly terminal=termite
-readonly text_editor=geany
+readonly terminal=alacritty
+readonly text_editor=atom
 readonly open_folder_cmd=thunar
 readonly default_open_cmd=exo-open
 readonly recent_script=/usr/bin/al-recent-files-pipemenu

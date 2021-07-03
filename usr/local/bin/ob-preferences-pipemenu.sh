@@ -35,7 +35,7 @@ fi
 ## Display the menu.
 menuStart
     echo '<item label="Refresh Openbox"><action name="Restart"/></item>'
-    menuItem "Update Tiel Standard" "termite -e ~/.tiel-standard/Tiel-Standard-Configuration/tiel-standard-bootstrapper.sh"
+    menuItem "Update Tiel Standard" "alacritty -e ~/.tiel-standard/Tiel-Standard-Configuration/tiel-standard-bootstrapper.sh"
     menuSeparator
     menuItem "Sync Unison" "sync-unison.sh"
     menuItem "Toggle Periodic Sync: $PERIODIC_SYNC_DESCRIPTION" "toggle-periodic-sync-unison.sh $PERIODIC_SYNC_TOGGLE"
