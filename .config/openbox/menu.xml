@@ -3,7 +3,7 @@
   <menu id="root-menu" title="Menu" label="Openbox 3">
 		<item label="🖵&#8198;&#8198;&#8198;&#8198;Terminal">
 			<action name="Execute">
-				<command>termite</command>
+				<command>alacritty</command>
 			</action>
 		</item>
 		<item label="🕸&#8198;&#8198;&#8198;&#8198;Firefox">
@@ -90,7 +90,7 @@
       <separator/>
       <item label="🎶🎶&#8198;&#8198;&#8198;&#8198;Music Player">
         <action name="Execute">
-          <execute>termite -e ncmpcpp</execute>
+          <execute>alacritty -e ncmpcpp</execute>
         </action>
       </item>
       <item label="🎬&#8198;&#8198;&#8198;&#8198;&#8198;&#8198;VLC">

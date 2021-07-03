@@ -141,12 +141,16 @@ sudo pacman -S archlinux-keyring --needed
 sudo pacman -Syu --overwrite /usr/lib\*/p11-kit-trust.so --noconfirm
 yay -Syu --devel --timeupdate --noconfirm
 
+## Link DNS resolvers.
+sudo ln -sf /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
+
 ## Install or update standard programs if needed.
 sudo pacman -S base-devel --needed --noconfirm
 sudo pacman -S asar --noconfirm
 sudo pacman -S pacman-contrib --needed --noconfirm
 sudo pacman -S iwd --needed --noconfirm
 sudo pacman -S ntp --needed --noconfirm
+sudo pacman -S alacritty --needed --noconfirm
 sudo pacman -S pulseaudio --needed --noconfirm
 sudo pacman -S pavucontrol --needed --noconfirm
 sudo pacman -S python-pip --needed --noconfirm
@@ -225,6 +229,9 @@ pip install pydes
 pip install bs4
 
 ## Remove unwanted programs which might be present.
+sudo pacman -Rns vim --noconfirm
+sudo pacman -Rns ranger --noconfirm
+sudo pacman -Rns leafpad --noconfirm
 sudo pacman -Rns termite --noconfirm
 sudo pacman -Rns archcraft-about --noconfirm
 sudo pacman -Rns archcraft-startapp --noconfirm
