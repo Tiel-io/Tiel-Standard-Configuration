@@ -1,0 +1,10 @@
+# Ignore internal repositories for updating.
+Bib/
+Curated-Plymouth-Themes/
+Reddit-Wallpaper-Downloader/
+rofi-iwd-menu/
+
+# Ignore aspect ration file dump.
+1
+2
+3
