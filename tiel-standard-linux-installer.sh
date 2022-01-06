@@ -294,12 +294,14 @@ sudo pacman -Rns wpa_supplicant --noconfirm
 sudo pacman -Rns netctl --noconfirm
 sudo pacman -RnS dhcpcd --noconfirm
 
+# TODO: file synchronization solution via Syncthing.
+
 ## Prepare our iwd directory for our Rofi management script to run later.
 sudo chmod o=rw /var/lib/iwd
 sudo chmod o=rw /var/lib/iwd/*
 
 ## Install ytmdl.
-cd "${tiel_dir}"
+cd "${tiel_dir}/Tiel-Standard-Configuration"
 sudo pacman -S python-requests --needed --noconfirm
 sudo pacman -S python-wheel --needed --noconfirm
 sudo rm -rf ytmdl
@@ -346,9 +348,10 @@ echo "--- Downloaded wallpapers. ---"
 echo ""
 
 ## Install Solidity development tools.
-## TODO: get nvm working.
-sudo pacman -S node-gyp --needed --noconfirm
-wget -O- https://raw.githubusercontent.com/glenpike/npm-g_nosudo/master/npm-g-nosudo.sh | sh
+## TODO: get nvm working; maybe volta?
+## sudo pacman -S node-gyp --needed --noconfirm
+## wget -O- https://raw.githubusercontent.com/glenpike/npm-g_nosudo/master/npm-g-nosudo.sh | sh
+
 ## TODO: install Hardhat and Ethers.
 
 ## TODO: install full Serverless setup.
@@ -382,6 +385,7 @@ if [ "$first_time" = true ]; then
   echo "--- Custom font files set. ---"
   echo ""
 fi
+
 
 ## Remove some unneeded content that is included in Archcraft by default.
 if [ "$first_time" = true ]; then
