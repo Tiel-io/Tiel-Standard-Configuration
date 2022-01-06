@@ -1,10 +1,12 @@
 # GRUB boot loader configuration
-
 GRUB_DEFAULT=0
 GRUB_TIMEOUT=10
 GRUB_DISTRIBUTOR="Archcraft"
 GRUB_CMDLINE_LINUX_DEFAULT="quiet loglevel=3 systemd.show_status=false udev.log-priority=3 vt.global_cursor_default=0 splash nvidia-drm.modeset=1"
 GRUB_CMDLINE_LINUX=" cryptdevice=UUID=7bc480b8-a4ab-4852-b54f-55fc4c00ed1d:cryptroot"
+
+# Enable the OS-prober.
+GRUB_DISABLE_OS_PROBER=false
 
 # Preload both GPT and MBR modules so that they are not missed
 GRUB_PRELOAD_MODULES="part_gpt part_msdos"
