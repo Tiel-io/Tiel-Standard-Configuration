@@ -82,10 +82,10 @@ fi
 ## Pull the most recent standard configuration.
 cd "${tiel_dir}"
 echo "* getting most up-to-date standard configuration content"
-#git clone https://github.com/Tiel-io/Tiel-Standard-Configuration.git
+git clone https://github.com/Tiel-io/Tiel-Standard-Configuration.git
 cd Tiel-Standard-Configuration
-#git fetch --all
-#git reset --hard origin/master
+git fetch --all
+git reset --hard origin/master
 
 # Retrieve the WiFi menu.
 git clone https://github.com/TimTinkers/rofi-iwd-menu.git
@@ -193,7 +193,9 @@ sudo pacman -S ntp --needed --noconfirm
 sudo pacman -S alacritty --needed --noconfirm
 sudo pacman -S pulseaudio --needed --noconfirm
 sudo pacman -S pavucontrol --needed --noconfirm
+sudo pacman -Rns python-pip --needed --noconfirm
 sudo pacman -S python-pip --needed --noconfirm
+sudo pacman -S python-requests --needed --noconfirm
 sudo pacman -S firefox --needed --noconfirm
 sudo pacman -S atom --needed --noconfirm
 sudo pacman -S apm --noconfirm
@@ -249,21 +251,26 @@ sudo pacman -S aws-cli --needed --noconfirm
 sudo cp ./etc/mkinitcpio.conf /etc/mkinitcpio.conf
 sudo cp ./etc/default/grub /etc/default/grub
 sudo cp ./etc/modprobe.d/blacklist.conf /etc/modprobe.d/blacklist.conf
+sudo mkdir /etc/pacman.d/hooks
 sudo cp ./etc/pacman.d/hooks/nvidia.hook /etc/pacman.d/hooks/nvidia.hook
 set-tiel-standard-config.sh RANDOMIZE_BOOT true
 sudo grub-mkconfig -o /boot/grub/grub.cfg
 sudo set-random-plymouth-theme.sh
+
+# Save Python from itself.
+sudo pacman -Rns python-pip --noconfirm
+sudo pacman -S python-pip --noconfirm
+sudo pacman -S python-requests --noconfirm
 
 ## Remove potentially-stale Python dependencies.
 sudo pip uninstall -y wheel
 sudo pip uninstall -y Pillow
 sudo pip uninstall -y screeninfo
 sudo pip uninstall -y pycountry
-sudo pip uninstall -y requests
-pip uninstall wheel
-pip uninstall requests
-pip uninstall Pillow
-pip uninstall screeninfo
+pip uninstall -y wheel
+pip uninstall -y requests
+pip uninstall -y Pillow
+pip uninstall -y screeninfo
 
 ## Install Python dependencies which must use pip.
 pip install pycountry
@@ -286,11 +293,6 @@ sudo pacman -Rns nm-connection-editor --noconfirm
 sudo pacman -Rns wpa_supplicant --noconfirm
 sudo pacman -Rns netctl --noconfirm
 sudo pacman -RnS dhcpcd --noconfirm
-
-## Perform Unison setup.
-if [ "$first_time" = true ]; then
-  setup-unison.sh
-fi
 
 ## Prepare our iwd directory for our Rofi management script to run later.
 sudo chmod o=rw /var/lib/iwd
