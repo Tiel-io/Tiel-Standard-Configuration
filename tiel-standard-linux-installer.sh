@@ -17,6 +17,33 @@ fi
 echo "--- Permission received. ---"
 echo ""
 
+## Prevent potential DNS issues on bad networks by using a preconfigued server.
+sudo systemctl disable systemd-resolved --now
+echo "[main]\r\ndns=none" | sudo tee /etc/NetworkManager/NetworkManager.conf
+echo "nameserver 1.1.1.1" | sudo tee /etc/resolv.conf
+sudo systemctl restart NetworkManager.service
+
+## Initialize the system with at least some known-good mirrors.
+echo 'Server = https://mirrors.mit.edu/archlinux/$repo/os/$arch\r\nServer = https://arch.mirror.constant.com/$repo/os/$arch\r\nServer = https://mirrors.kernel.org/archlinux/$repo/os/$arch\r\nServer = https://mirror.ette.biz/archlinux/$repo/os/$arch\r\nServer = https://mirror.wdc1.us.leaseweb.net/archlinux/$repo/os/$arch\r\nServer = https://mirror.umd.edu/archlinux/$repo/os/$arch\r\nServer = https://iad.mirrors.misaka.one/archlinux/$repo/os/$arch\r\nServer = https://mirror.osbeck.com/archlinux/$repo/os/$arch\r\nServer = https://mirror.sergal.org/archlinux/$repo/os/$arch\r\nServer = https://mirrors.rit.edu/archlinux/$repo/os/$arch' | sudo tee /etc/pacman.d/mirrorlist
+
+## Install the Arch Linux keyring.
+sudo pacman -S archlinux-keyring --needed --noconfirm
+
+## Remove unwanted and broken packages.
+sudo pacman -Rns virtualbox-guest-utils virtualbox-guest-dkms --noconfirm
+
+## Update the system.
+yes | sudo pacman -Syu --overwrite /usr/lib\*/p11-kit-trust.so
+
+## Install reflector.
+sudo pacman -S reflector --needed --noconfirm
+
+## Activate reflector.
+echo "--save /etc/pacman.d/mirrorlist\r\n--protocol https\r\n--country 'United States'\r\n--age 1\r\n--sort rate" | sudo tee /etc/xdg/reflector/reflector.conf
+echo "--- Using reflector to update mirrors. This will take a while. ---"
+sudo reflector --protocol https --country 'United States' --age 1 --sort rate --save /etc/pacman.d/mirrorlist
+echo "--- Mirrors updated! ---"
+
 ## Create and populate the Tiel standard data folder.
 echo "--- Preparing Tiel Standard installation files. ---"
 tiel_dir="${HOME}/.tiel-standard"
@@ -27,7 +54,7 @@ if [ ! -d "${tiel_dir}" ]; then
   mkdir -p "${tiel_dir}"
   first_time=true
   MADE_TIEL_DIR=true
-  sudo pacman -Syyu --overwrite /usr/lib\*/p11-kit-trust.so --noconfirm
+  yes | sudo pacman -Syyu --overwrite /usr/lib\*/p11-kit-trust.so
 else
   echo "* found existing Tiel Standard directory: $tiel_dir"
   first_time=$1
@@ -49,36 +76,34 @@ fi
 ## Pull the most recent standard configuration.
 cd "${tiel_dir}"
 echo "* getting most up-to-date standard configuration content"
-if [ "$first_time" = true ]; then
-  git clone https://github.com/Tiel-io/Tiel-Standard-Configuration.git
-fi
+git clone https://github.com/Tiel-io/Tiel-Standard-Configuration.git
 cd Tiel-Standard-Configuration
 git fetch --all
 git reset --hard origin/master
-if [ "$first_time" = true ]; then
-  git clone https://github.com/TimTinkers/rofi-iwd-menu.git
-fi
+
+# Retrieve the WiFi menu.
+git clone https://github.com/TimTinkers/rofi-iwd-menu.git
 cd rofi-iwd-menu
 git fetch --all
 git reset --hard origin/master
 cd ../
-if [ "$first_time" = true ]; then
-  git clone https://github.com/TimTinkers/Reddit-Wallpaper-Downloader.git
-fi
+
+# Retrieve the wallpaper downloader.
+git clone https://github.com/TimTinkers/Reddit-Wallpaper-Downloader.git
 cd Reddit-Wallpaper-Downloader
 git fetch --all
 git reset --hard origin/master
 cd ../
-if [ "$first_time" = true ]; then
-  git clone https://github.com/TimTinkers/Curated-Plymouth-Themes.git
-fi
+
+# Retrieve the Plymouth themes.
+git clone https://github.com/TimTinkers/Curated-Plymouth-Themes.git
 cd Curated-Plymouth-Themes
 git fetch --all
 git reset --hard origin/master
 cd ../
-if [ "$first_time" = true ]; then
-  git clone https://github.com/TimTinkers/Bib.git
-fi
+
+# Retrieve the SSH manager.
+git clone https://github.com/TimTinkers/Bib.git
 cd Bib
 git fetch --all
 git reset --hard origin/master
@@ -135,14 +160,22 @@ sudo cp ./usr/share/lxdm/themes/archcraft/greeter-gtk3.ui /usr/share/lxdm/themes
 sudo cp ./usr/share/lxdm/themes/archcraft/greeter.ui /usr/share/lxdm/themes/archcraft/greeter.ui
 
 ## Install the Arch Linux keyring.
-sudo pacman -S archlinux-keyring --needed
+sudo pacman -S archlinux-keyring --needed --noconfirm
 
 ## Update the system.
-sudo pacman -Syu --overwrite /usr/lib\*/p11-kit-trust.so --noconfirm
-yay -Syu --devel --timeupdate --noconfirm
+yes | sudo pacman -Syu --overwrite /usr/lib\*/p11-kit-trust.so --noconfirm
+sudo pacman -S autoconf --noconfirm
+sudo pacman -S automake --noconfirm
 
-## Link DNS resolvers.
-sudo ln -sf /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
+# Update yay by deleting it; this avoids periodic bugs.
+sudo pacman -Rns yay --noconfirm
+mkdir /tmp/yay
+cd /tmp/yay
+curl -OJ 'https://aur.archlinux.org/cgit/aur.git/plain/PKGBUILD?h=yay'
+makepkg -si --noconfirm
+cd -
+rm -rf /tmp/yay
+yay -Syu --devel --timeupdate --noconfirm
 
 ## Install or update standard programs if needed.
 sudo pacman -S base-devel --needed --noconfirm
@@ -192,6 +225,8 @@ yay -S slack-desktop --noconfirm
 yay -S polybar --noconfirm
 yay -S gitkraken --noconfirm
 yay -S insomnia --noconfirm
+sudo chown -R 1000:985 ~/.npm
+yay -S insomnia --noconfirm
 yay -S zeal --noconfirm
 yay -S angrysearch --noconfirm
 yay -S trelby-git --noconfirm
@@ -201,7 +236,7 @@ yay -S unityhub --noconfirm
 yay -S grub-customizer --noconfirm
 yay -S shadowfox-updater --noconfirm
 sudo pacman -S steam --needed --noconfirm
-sudo pacman -S aws-cli --needed --noconfirm
+sudo pacman -S aws-cli --needed --noconfirm  # MADE IT TO HERE
 
 ## Blacklist the Nouveau driver and rebuild kernel to activate NVIDIA.
 sudo cp ./etc/mkinitcpio.conf /etc/mkinitcpio.conf
