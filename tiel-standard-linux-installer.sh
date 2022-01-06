@@ -24,13 +24,13 @@ echo "nameserver 1.1.1.1" | sudo tee /etc/resolv.conf
 sudo systemctl restart NetworkManager.service
 
 ## Initialize the system with at least some known-good mirrors.
-echo 'Server = https://mirrors.mit.edu/archlinux/$repo/os/$arch\r\nServer = https://arch.mirror.constant.com/$repo/os/$arch\r\nServer = https://mirrors.kernel.org/archlinux/$repo/os/$arch\r\nServer = https://mirror.ette.biz/archlinux/$repo/os/$arch\r\nServer = https://mirror.wdc1.us.leaseweb.net/archlinux/$repo/os/$arch\r\nServer = https://mirror.umd.edu/archlinux/$repo/os/$arch\r\nServer = https://iad.mirrors.misaka.one/archlinux/$repo/os/$arch\r\nServer = https://mirror.osbeck.com/archlinux/$repo/os/$arch\r\nServer = https://mirror.sergal.org/archlinux/$repo/os/$arch\r\nServer = https://mirrors.rit.edu/archlinux/$repo/os/$arch' | sudo tee /etc/pacman.d/mirrorlist
-
-## Install the Arch Linux keyring.
-sudo pacman -S archlinux-keyring --needed --noconfirm
+echo 'Server = https://mirrors.mit.edu/archlinux/$repo/os/$arch' | sudo tee /etc/pacman.d/mirrorlist
 
 ## Remove unwanted and broken packages.
 sudo pacman -Rns virtualbox-guest-utils virtualbox-guest-dkms --noconfirm
+
+## Install the Arch Linux keyring.
+sudo pacman -Sy archlinux-keyring --needed --noconfirm
 
 ## Update the system.
 yes | sudo pacman -Syu --overwrite /usr/lib\*/p11-kit-trust.so
@@ -38,11 +38,17 @@ yes | sudo pacman -Syu --overwrite /usr/lib\*/p11-kit-trust.so
 ## Install reflector.
 sudo pacman -S reflector --needed --noconfirm
 
-## Activate reflector.
-echo "--save /etc/pacman.d/mirrorlist\r\n--protocol https\r\n--country 'United States'\r\n--age 1\r\n--sort rate" | sudo tee /etc/xdg/reflector/reflector.conf
-echo "--- Using reflector to update mirrors. This will take a while. ---"
-sudo reflector --protocol https --country 'United States' --age 1 --sort rate --save /etc/pacman.d/mirrorlist
-echo "--- Mirrors updated! ---"
+## Activate reflector if the mirror list is more than a week old.
+ONE_WEEK=604800
+NOW=$(date +%s)
+FILE_TIME=$(stat /etc/pacman.d/mirrorlist -c %Y)
+TIME_DIFF=$(expr $NOW - $FILE_TIME)
+if [ $TIME_DIFF -gt $ONE_WEEK ]; then
+  echo "--save /etc/pacman.d/mirrorlist\r\n--protocol https\r\n--country 'United States'\r\n--age 1\r\n--sort rate" | sudo tee /etc/xdg/reflector/reflector.conf
+  echo "--- Using reflector to update mirrors. This will take a while. ---"
+  sudo reflector --protocol https --country 'United States' --age 1 --sort rate --save /etc/pacman.d/mirrorlist
+  echo "--- Mirrors updated! ---"
+fi
 
 ## Create and populate the Tiel standard data folder.
 echo "--- Preparing Tiel Standard installation files. ---"
@@ -76,10 +82,10 @@ fi
 ## Pull the most recent standard configuration.
 cd "${tiel_dir}"
 echo "* getting most up-to-date standard configuration content"
-git clone https://github.com/Tiel-io/Tiel-Standard-Configuration.git
+#git clone https://github.com/Tiel-io/Tiel-Standard-Configuration.git
 cd Tiel-Standard-Configuration
-git fetch --all
-git reset --hard origin/master
+#git fetch --all
+#git reset --hard origin/master
 
 # Retrieve the WiFi menu.
 git clone https://github.com/TimTinkers/rofi-iwd-menu.git
@@ -114,7 +120,8 @@ echo "* updating all user scripts"
 sudo cp ./Curated-Plymouth-Themes/rofi-select-theme.sh /usr/local/bin/rofi-select-theme.sh
 sudo cp ./rofi-iwd-menu/rofi-wifi-menu.sh /usr/local/bin/rofi-wifi-menu.sh
 sudo cp ./Reddit-Wallpaper-Downloader/get-wallpapers.sh /usr/local/bin/get-wallpapers.sh
-sudo cp ./Bib/bib /usr/local/bib/bib
+sudo cp ./Bib/bib /usr/local/bin/bib
+sudo chmod +x /usr/local/bin/bib
 sudo cp -a ./Reddit-Wallpaper-Downloader/wallpaper-downloader/. /usr/local/bin/wallpaper-downloader/
 sudo cp -a ./usr/local/bin/. /usr/local/bin/
 sudo cp -a ./usr/lib/. /usr/lib/
@@ -123,7 +130,7 @@ find /usr/local/bin/ -type f -iname "*.sh" -exec sudo chmod +x {} \;
 ## Copy configuration files to the user's configuration directory.
 echo "* updating all user configurations"
 sudo cp -a ./.config/. ~/.config/
-sudo chmod +x ~/.config/polybar/forest/launch.sh
+sudo chmod +x ~/.config/polybar/launch.sh
 sudo cp -a ./.ncmpcpp/config ~/.ncmpcpp/config
 sudo cp -a ./home/. ~/
 source ~/.zshrc
@@ -167,7 +174,7 @@ yes | sudo pacman -Syu --overwrite /usr/lib\*/p11-kit-trust.so --noconfirm
 sudo pacman -S autoconf --noconfirm
 sudo pacman -S automake --noconfirm
 
-# Update yay by deleting it; this avoids periodic bugs.
+# Update yay by deleting it first; this avoids periodic bugs.
 sudo pacman -Rns yay --noconfirm
 mkdir /tmp/yay
 cd /tmp/yay
@@ -236,7 +243,7 @@ yay -S unityhub --noconfirm
 yay -S grub-customizer --noconfirm
 yay -S shadowfox-updater --noconfirm
 sudo pacman -S steam --needed --noconfirm
-sudo pacman -S aws-cli --needed --noconfirm  # MADE IT TO HERE
+sudo pacman -S aws-cli --needed --noconfirm
 
 ## Blacklist the Nouveau driver and rebuild kernel to activate NVIDIA.
 sudo cp ./etc/mkinitcpio.conf /etc/mkinitcpio.conf
