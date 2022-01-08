@@ -196,6 +196,7 @@ sudo pacman -S pavucontrol --needed --noconfirm
 sudo pacman -Rns python-pip --needed --noconfirm
 sudo pacman -S python-pip --needed --noconfirm
 sudo pacman -S python-requests --needed --noconfirm
+sudo pacman -S brave-bin --needed --noconfirm
 sudo pacman -S firefox --needed --noconfirm
 sudo pacman -S atom --needed --noconfirm
 sudo pacman -S apm --noconfirm

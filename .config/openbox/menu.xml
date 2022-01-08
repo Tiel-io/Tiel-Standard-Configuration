@@ -6,9 +6,9 @@
 				<command>alacritty</command>
 			</action>
 		</item>
-		<item label="🕸&#8198;&#8198;&#8198;&#8198;Firefox">
+		<item label="🕸&#8198;&#8198;&#8198;&#8198;Brave">
 			<action name="Execute">
-				<command>firefox</command>
+				<command>brave</command>
 			</action>
 		</item>
     <item label="🛡&#8198;&#8198;&#8198;&#8198;&#8198;Bitwarden">
