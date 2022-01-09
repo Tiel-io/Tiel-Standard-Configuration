@@ -1,10 +1,19 @@
 "*":
   core:
-    telemetryConsent: "limited"
+    projectHome: "/home/tim/Documents"
+    reopenProjectMenuCount: 10
+    telemetryConsent: "no"
+    uriHandlerRegistration: "always"
   editor:
+    autoIndentOnPaste: false
+    defaultFontSize: 16
     fontFamily: "Fira Code"
+    fontSize: 16
+    softTabs: false
+    softWrap: true
+    softWrapAtPreferredLineLength: true
+    tabType: "hard"
   "exception-reporting":
-    userId: "4ae7e058-ee84-4fc2-9b0b-e7363d9ba368"
-  susave: {}
+    userId: "462c1c4d-39eb-4d14-b43a-a74448f4a51b"
   welcome:
     showOnStartup: false
