@@ -337,9 +337,13 @@ cd ../
 
 ## Install useful Atom packages.
 apm install script
+apm install teletype
+apm install file-icons
+apm install minimap
 
-## Copy Atom's configuration settings.
+## Copy Atom's configuration and style settings.
 sudo cp -a ./.atom/config.cson ~/.atom/config.cson
+sudo cp -a ./.atom/styles.less ~/.atom/styles.less
 
 ## Download some nice wallpaper images.
 echo "--- Downloading wallpapers. ---"
@@ -359,8 +363,6 @@ echo ""
 ## TODO: install Hardhat and Ethers.
 
 ## TODO: install full Serverless setup.
-
-## TODO: configure Atom.
 
 ## Download and install the Fira Code fonts on our first execution.
 if [ "$first_time" = true ]; then

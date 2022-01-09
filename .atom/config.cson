@@ -15,6 +15,11 @@
     tabType: "hard"
   "exception-reporting":
     userId: "462c1c4d-39eb-4d14-b43a-a74448f4a51b"
+  "file-icons": {}
+  minimap:
+    displayPluginsControls: false
+    minimapScrollIndicator: false
+    scrollAnimation: true
   script:
     cwdBehavior: "Project directory of the script"
     stopOnRerun: true
