@@ -384,9 +384,18 @@ if [ "$first_time" = true ]; then
   fc-cache -f
   fira-code-default.sh
   echo "--- Custom font files set. ---"
-  echo ""
+  echo "--- Second pass. ---"
+  sudo pacman -S ttf-fira-code --needed --noconfirm
+  fc-cache -f -v
+  fira-code-default.sh
 fi
 
+## Configure Emoji support in font.
+sudo pacman -S noto-fonts-emoji --needed --noconfirm
+sudo pacman -S noto-fonts --needed --noconfirm
+yay -S ttf-ms-fonts --needed --noconfirm
+sudo cp ./etc/fonts/local.conf /etc/fonts/local.conf
+fc-cache -f -v
 
 ## Remove some unneeded content that is included in Archcraft by default.
 if [ "$first_time" = true ]; then
