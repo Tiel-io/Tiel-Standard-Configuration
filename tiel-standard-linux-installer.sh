@@ -390,12 +390,23 @@ if [ "$first_time" = true ]; then
   fira-code-default.sh
 fi
 
-## Configure Emoji support in font.
+## Configure emoji support in font.
 sudo pacman -S noto-fonts-emoji --needed --noconfirm
 sudo pacman -S noto-fonts --needed --noconfirm
 yay -S ttf-ms-fonts --needed --noconfirm
 sudo cp ./etc/fonts/local.conf /etc/fonts/local.conf
 fc-cache -f -v
+
+# Install and enable snaps.
+git clone https://aur.archlinux.org/snapd.git
+cd snapd
+makepkg -si --needed --noconfirm
+cd ../
+sudo systemctl enable --now snapd.socket
+sudo ln -s /var/lib/snapd/snap /snap
+
+# Install an emoji keyboard snap. 🙂
+yay -S emote --needed --noconfirm
 
 ## Remove some unneeded content that is included in Archcraft by default.
 if [ "$first_time" = true ]; then
