@@ -29,78 +29,78 @@
 		</item>
 		<separator/>
     <menu id="root-menu-srct" label="Shortcuts">
-      <item label="⚛️&#8198;&#8198;&#8198;&#8198;&#8198;&#8198;&#8198;Atom">
+      <item label="Atom">
         <action name="Execute">
           <command>atom</command>
         </action>
       </item>
-      <item label="💻&#8198;&#8198;&#8198;&#8198;&#8198;&#8198;GitKraken">
+      <item label="GitKraken">
         <action name="Execute">
           <execute>gitkraken</execute>
         </action>
       </item>
-      <item label="🌘&#8198;&#8198;&#8198;&#8198;&#8198;&#8198;Insomnia">
+      <item label="Insomnia">
         <action name="Execute">
           <execute>insomnia</execute>
         </action>
       </item>
       <separator/>
-      <item label="✉️&#8198;&#8198;&#8198;&#8198;&#8198;&#8198;Email">
+      <item label="Email">
         <action name="Execute">
           <execute>thunderbird</execute>
         </action>
       </item>
-      <item label="🐦&#8198;&#8198;&#8198;&#8198;&#8198;&#8198;Discord">
+      <item label="Discord">
         <action name="Execute">
           <execute>discord-canary</execute>
         </action>
       </item>
-      <item label="📻&#8198;&#8198;&#8198;&#8198;&#8198;&#8198;Telegram">
+      <item label="Telegram">
         <action name="Execute">
           <execute>telegram-desktop</execute>
         </action>
       </item>
-      <item label="️🗫&#8198;&#8198;&#8198;&#8198;Slack">
+      <item label="️Slack">
         <action name="Execute">
           <execute>slack</execute>
         </action>
       </item>
-      <item label="🗩&#8198;&#8198;&#8198;&#8198;&#8198;Signal">
+      <item label="Signal">
         <action name="Execute">
           <execute>signal-desktop</execute>
         </action>
       </item>
       <separator/>
-      <item label="🎮&#8198;&#8198;&#8198;&#8198;&#8198;Lutris">
+      <item label="Lutris">
         <action name="Execute">
           <execute>lutris</execute>
         </action>
       </item>
-      <item label="🎮&#8198;&#8198;&#8198;&#8198;&#8198;Steam">
+      <item label="Steam">
         <action name="Execute">
           <execute>steam</execute>
         </action>
       </item>
       <separator/>
-      <item label="🖌️&#8198;&#8198;&#8198;&#8198;&#8198;GIMP">
+      <item label="GIMP">
         <action name="Execute">
           <execute>gimp</execute>
         </action>
       </item>
       <separator/>
-      <item label="🎶🎶&#8198;&#8198;&#8198;&#8198;Music Player">
+      <item label="Music Player">
         <action name="Execute">
           <execute>alacritty -e ncmpcpp</execute>
         </action>
       </item>
-      <item label="🎬&#8198;&#8198;&#8198;&#8198;&#8198;&#8198;VLC">
+      <item label="VLC">
         <action name="Execute">
           <execute>vlc</execute>
         </action>
       </item>
     </menu>
 		<menu id="root-menu-8397" label="Run Using Root">
-      <item label="⚛️&#8198;&#8198;&#8198;&#8198;&#8198;&#8198;&#8198;Atom ⚠️">
+      <item label="Atom">
         <action name="Execute">
           <execute>app-as-root.sh atom</execute>
         </action>
