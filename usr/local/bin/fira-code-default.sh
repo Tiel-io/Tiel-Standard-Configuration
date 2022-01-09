@@ -16,7 +16,7 @@ fi
 
 ## Prepare the Fira Code font.
 getfonts () {
-	FONT=$(echo "Fira Code|Regular|10")
+	FONT=$(echo "Fira Code|Regular|12")
 	FNAME=$(echo $FONT | cut -d'|' -f1)
 	FSTYLE=$(echo $FONT | cut -d'|' -f2)
 	FSIZE=$(echo $FONT | cut -d'|' -f3)
@@ -119,8 +119,8 @@ font_gtk () {
 getfonts
 font_bar
 font_rofi
-font_term
 font_ob
 font_dunst
 font_gtk
+font_term
 exit 0
