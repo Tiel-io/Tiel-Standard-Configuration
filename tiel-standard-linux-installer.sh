@@ -335,6 +335,9 @@ cp ./target/release/autoplank /usr/local/bin/autoplank
 sudo chmod +x /usr/local/bin/autoplank
 cd ../
 
+## Install useful Atom packages.
+apm install script
+
 ## Copy Atom's configuration settings.
 sudo cp -a ./.atom/config.cson ~/.atom/config.cson
 
