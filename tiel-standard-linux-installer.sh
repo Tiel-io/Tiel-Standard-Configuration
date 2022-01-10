@@ -349,6 +349,7 @@ apm install drag-relative-path
 apm install tabnine
 apm install linter
 apm install linter-eslint
+apm install language-vue
 
 ## Copy Atom's configuration and style settings.
 sudo cp -a ./.atom/config.cson ~/.atom/config.cson
