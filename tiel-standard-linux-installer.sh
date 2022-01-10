@@ -296,7 +296,7 @@ sudo pacman -Rns wpa_supplicant --noconfirm
 sudo pacman -Rns netctl --noconfirm
 sudo pacman -RnS dhcpcd --noconfirm
 
-# TODO: file synchronization solution via Syncthing.
+## TODO: file synchronization solution via Syncthing.
 
 ## Prepare our iwd directory for our Rofi management script to run later.
 sudo chmod o=rw /var/lib/iwd
@@ -365,14 +365,16 @@ get-wallpapers.sh
 echo "--- Downloaded wallpapers. ---"
 echo ""
 
-## Install Solidity development tools.
-## TODO: get nvm working; maybe volta?
-## sudo pacman -S node-gyp --needed --noconfirm
-## wget -O- https://raw.githubusercontent.com/glenpike/npm-g_nosudo/master/npm-g-nosudo.sh | sh
+## Install Volta to manage Node.
+curl https://get.volta.sh | bash
+volta install node@latest
+node -v
 
-## TODO: install Hardhat and Ethers.
-
-## TODO: install full Serverless setup.
+## Install Cloudflare Wrangler for serverless development.
+npm i @cloudflare/wrangler -g
+wrangler --version
+npm i miniflare -g
+miniflare --version
 
 ## Download and install the Fira Code fonts on our first execution.
 if [ "$first_time" = true ]; then
