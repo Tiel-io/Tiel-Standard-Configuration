@@ -5,7 +5,10 @@
     projectHome: "/home/tim/Documents"
     reopenProjectMenuCount: 10
     telemetryConsent: "no"
-    uriHandlerRegistration: "always"
+    customFileTypes:
+      'source.js': [
+        'cjs'
+      ]
   editor:
     autoIndentOnPaste: false
     defaultFontSize: 16
@@ -18,6 +21,12 @@
   "exception-reporting":
     userId: "462c1c4d-39eb-4d14-b43a-a74448f4a51b"
   "file-icons": {}
+  "linter-eslint":
+    autofix:
+      fixOnSave: true
+    lintHtmlFiles: true
+  "linter-ui-default":
+    showPanel: true
   minimap:
     displayPluginsControls: false
     minimapScrollIndicator: false
@@ -25,5 +34,11 @@
   script:
     cwdBehavior: "Project directory of the script"
     stopOnRerun: true
+  "todo-show":
+    findTheseTodos: [
+      "TODO"
+    ]
+    statusBarIndicator: true
+  uriHandlerRegistration: "always"
   welcome:
     showOnStartup: false
