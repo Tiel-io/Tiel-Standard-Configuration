@@ -344,6 +344,11 @@ apm install minimap
 apm install chromo-color-previews
 apm install highlight-selected
 apm install todo-show
+apm install emmet
+apm install drag-relative-path
+apm install tabnine
+apm install linter
+apm install linter-eslint
 
 ## Copy Atom's configuration and style settings.
 sudo cp -a ./.atom/config.cson ~/.atom/config.cson
