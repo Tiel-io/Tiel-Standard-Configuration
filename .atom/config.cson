@@ -1,4 +1,6 @@
 "*":
+  "Chromo-Color-Previews":
+    compositeColors: true
   core:
     projectHome: "/home/tim/Documents"
     reopenProjectMenuCount: 10

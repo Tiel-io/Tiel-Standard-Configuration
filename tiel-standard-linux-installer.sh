@@ -245,6 +245,7 @@ yay -S brother-hll2350dw --noconfirm
 yay -S unityhub --noconfirm
 yay -S grub-customizer --noconfirm
 yay -S shadowfox-updater --noconfirm
+yay -S jmtpfs --needed --noconfirm
 sudo pacman -S steam --needed --noconfirm
 sudo pacman -S aws-cli --needed --noconfirm
 
@@ -340,6 +341,9 @@ apm install script
 apm install teletype
 apm install file-icons
 apm install minimap
+apm install chromo-color-previews
+apm install highlight-selected
+apm install todo-show
 
 ## Copy Atom's configuration and style settings.
 sudo cp -a ./.atom/config.cson ~/.atom/config.cson
