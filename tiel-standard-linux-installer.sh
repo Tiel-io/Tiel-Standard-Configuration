@@ -350,6 +350,7 @@ apm install tabnine
 apm install linter
 apm install linter-eslint
 apm install language-vue
+apm install language-babel
 
 ## Copy Atom's configuration and style settings.
 sudo cp -a ./.atom/config.cson ~/.atom/config.cson

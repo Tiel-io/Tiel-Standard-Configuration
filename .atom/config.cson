@@ -2,13 +2,17 @@
   "Chromo-Color-Previews":
     compositeColors: true
   core:
+    customFileTypes:
+      "source.js": [
+        "cjs"
+      ]
+    disabledPackages: [
+      "language-javascript"
+    ]
     projectHome: "/home/tim/Documents"
     reopenProjectMenuCount: 10
     telemetryConsent: "no"
-    customFileTypes:
-      'source.js': [
-        'cjs'
-      ]
+    useTreeSitterParsers: false
   editor:
     autoIndentOnPaste: false
     defaultFontSize: 16
@@ -25,8 +29,7 @@
     autofix:
       fixOnSave: true
     lintHtmlFiles: true
-  "linter-ui-default":
-    showPanel: true
+  "linter-ui-default": {}
   minimap:
     displayPluginsControls: false
     minimapScrollIndicator: false
