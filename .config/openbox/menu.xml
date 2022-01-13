@@ -52,7 +52,7 @@
       </item>
       <item label="Discord">
         <action name="Execute">
-          <execute>discord-canary</execute>
+          <execute>discord-canary --ignore-gpu-blocklist --disable-features=UseOzonePlatform --enable-features=VaapiVideoDecoder --use-gl=desktop --enable-gpu-rasterization --enable-zero-copy</execute>
         </action>
       </item>
       <item label="Telegram">
