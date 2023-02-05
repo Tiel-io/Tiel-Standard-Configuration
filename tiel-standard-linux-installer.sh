@@ -198,7 +198,6 @@ sudo pacman -S python-pip --needed --noconfirm
 sudo pacman -S python-requests --needed --noconfirm
 sudo pacman -S brave-bin --needed --noconfirm
 sudo pacman -S firefox --needed --noconfirm
-sudo pacman -S atom --needed --noconfirm
 sudo pacman -S apm --noconfirm
 sudo pacman -S gimp --needed --noconfirm
 sudo pacman -S audacity --needed --noconfirm
@@ -229,6 +228,7 @@ sudo pacman -S lib32-mesa vulkan-intel lib32-vulkan-intel vulkan-icd-loader lib3
 sudo pacman -S lutris --needed --noconfirm
 sudo pacman -S cups --needed --noconfirm
 sudo pacman -S sshpass --needed --noconfirm
+yay -S vscodium-bin-marketplace --noconfirm
 yay -S bitwarden --noconfirm
 yay -S discord-canary --noconfirm
 yay -S slack-desktop --noconfirm
@@ -280,6 +280,7 @@ pip install pydes
 pip install bs4
 
 ## Remove unwanted programs which might be present.
+sudo pacman -Rns atom --noconfirm
 sudo pacman -Rns vim --noconfirm
 sudo pacman -Rns ranger --noconfirm
 sudo pacman -Rns leafpad --noconfirm
@@ -336,25 +337,8 @@ cp ./target/release/autoplank /usr/local/bin/autoplank
 sudo chmod +x /usr/local/bin/autoplank
 cd ../
 
-## Install useful Atom packages.
-apm install script
-apm install teletype
-apm install file-icons
-apm install minimap
-apm install chromo-color-previews
-apm install highlight-selected
-apm install todo-show
-apm install emmet
-apm install drag-relative-path
-apm install tabnine
-apm install linter
-apm install linter-eslint
-apm install language-vue
-apm install language-babel
-
-## Copy Atom's configuration and style settings.
-sudo cp -a ./.atom/config.cson ~/.atom/config.cson
-sudo cp -a ./.atom/styles.less ~/.atom/styles.less
+## Delete any potentially-dangling Atom configuration.
+sudo rm -rf ~/.atom
 
 ## Download some nice wallpaper images.
 echo "--- Downloading wallpapers. ---"
