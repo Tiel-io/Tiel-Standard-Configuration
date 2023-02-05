@@ -197,15 +197,12 @@ sudo pacman -Rns python-pip --needed --noconfirm
 sudo pacman -S python-pip --needed --noconfirm
 sudo pacman -S python-requests --needed --noconfirm
 sudo pacman -S brave-bin --needed --noconfirm
-sudo pacman -S firefox --needed --noconfirm
-sudo pacman -S apm --noconfirm
 sudo pacman -S gimp --needed --noconfirm
 sudo pacman -S audacity --needed --noconfirm
 sudo pacman -S telegram-desktop --needed --noconfirm
 sudo pacman -S signal-desktop --needed --noconfirm
 sudo pacman -S hicolor-icon-theme --needed --noconfirm
 sudo pacman -S papirus-icon-theme --needed --noconfirm
-sudo pacman -S intellij-idea-community-edition --needed --noconfirm
 sudo pacman -S calibre --needed --noconfirm
 sudo pacman -S geocode-glib --needed --noconfirm
 sudo pacman -S graphviz --needed --noconfirm
@@ -213,7 +210,6 @@ sudo pacman -S gtkspell3 --needed --noconfirm
 sudo pacman -S libgexiv2 --needed --noconfirm
 sudo pacman -S osm-gps-map --needed --noconfirm
 sudo pacman -S rcs --needed --noconfirm
-sudo pacman -S gramps --needed --noconfirm
 sudo pacman -S vlc --needed --noconfirm
 sudo pacman -S filezilla --needed --noconfirm
 sudo pacman -S rust --needed --noconfirm
@@ -237,14 +233,10 @@ yay -S gitkraken --noconfirm
 yay -S insomnia --noconfirm
 sudo chown -R 1000:985 ~/.npm
 yay -S insomnia --noconfirm
-yay -S zeal --noconfirm
 yay -S angrysearch --noconfirm
-yay -S trelby-git --noconfirm
 yay -S lib32-nvidia-utils --noconfirm
 yay -S brother-hll2350dw --noconfirm
-yay -S unityhub --noconfirm
 yay -S grub-customizer --noconfirm
-yay -S shadowfox-updater --noconfirm
 yay -S jmtpfs --needed --noconfirm
 sudo pacman -S steam --needed --noconfirm
 sudo pacman -S aws-cli --needed --noconfirm
@@ -280,6 +272,13 @@ pip install pydes
 pip install bs4
 
 ## Remove unwanted programs which might be present.
+yay -R trelby-git --noconfirm
+yay -R zeal --noconfirm
+yay -R unityhub --noconfirm
+yay -R shadowfox-updater --noconfirm
+sudo pacman -Rns gramps --noconfirm
+sudo pacman -Rns intellij-idea-community-edition --noconfirm
+sudo pacman -Rns firefox --noconfirm
 sudo pacman -Rns atom --noconfirm
 sudo pacman -Rns vim --noconfirm
 sudo pacman -Rns ranger --noconfirm
